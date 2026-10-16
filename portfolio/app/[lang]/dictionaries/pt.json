@@ -1,0 +1,303 @@
+{
+  "meta": {
+    "title": "Murilo Gomes | Estudante de Engenharia de Software",
+    "description": "Portfólio de Murilo Gomes: trajetória, projetos, certificações e evolução em desenvolvimento de software."
+  },
+  "header": {
+    "themeToLight": "Tema claro",
+    "themeToDark": "Tema escuro",
+    "themeAria": "Alternar tema",
+    "langAria": "Idioma",
+    "home": "Voltar ao início",
+    "skipToContent": "Pular para o conteúdo",
+    "navAria": "Seções do site",
+    "nav": {
+      "journey": "Jornada",
+      "experience": "Experiência",
+      "projects": "Projetos",
+      "skills": "Skills",
+      "certifications": "Certificações",
+      "milestones": "Marcos",
+      "contact": "Contato"
+    }
+  },
+  "intro": {
+    "label": "Carregando o portfólio",
+    "skip": "Pular"
+  },
+  "hero": {
+    "firstName": "Murilo",
+    "lastName": "Gomes",
+    "role": "Estudante de Engenharia de Software",
+    "tagline": "Aprendo todo dia e gosto de provar isso na prática. Aqui está o caminho até agora: cada curso, cada projeto e cada passo da minha evolução.",
+    "badge": "Aprendendo desde 2023",
+    "photoAlt": "Foto de Murilo Gomes",
+    "resume": "Baixar currículo",
+    "journey": "Ver minha jornada",
+    "links": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "email": "E-mail"
+    },
+    "stats": {
+      "certifications": "Certificações",
+      "projects": "Projetos",
+      "years": "Anos de estudo constante"
+    },
+    "scroll": "Role para continuar"
+  },
+  "journey": {
+    "index": "01",
+    "title": "Jornada",
+    "statement": "Eu não nasci sabendo programar. Fui aprendendo um curso, um projeto e um erro de cada vez, e não parei mais.",
+    "statementHighlight": [
+      "curso",
+      "projeto",
+      "erro",
+      "parei"
+    ],
+    "nowLabel": "Próximo passo",
+    "items": [
+      {
+        "when": "Fev/2023",
+        "title": "Começo no SENAI",
+        "text": "Entrei no técnico em Análise e Desenvolvimento de Sistemas e comecei a estudar programação de verdade."
+      },
+      {
+        "when": "2023–2024",
+        "title": "Certificações no caminho",
+        "text": "Fui juntando certificados enquanto estudava: LGPD, AWS Cloud Practitioner, Microsoft DP-900 e Web 3.0."
+      },
+      {
+        "when": "Dez/2024",
+        "title": "TCC e fim do técnico",
+        "text": "Terminei o técnico com um TCC de reconhecimento facial em Python, pensado para agilizar o atendimento em convênios médicos."
+      },
+      {
+        "when": "2025",
+        "title": "Ano de cursos online",
+        "text": "Foquei em cursos na Alura, na Rocketseat e na Hashtag Treinamentos. Sem sala de aula e sem pressa, mas sem parar."
+      },
+      {
+        "when": "Out/2025",
+        "title": "Estágio na Bozza",
+        "text": "Comecei como estagiário de suporte de TI, resolvendo problemas reais de pessoas reais."
+      },
+      {
+        "when": "Fev/2026",
+        "title": "Chegada na FIAP",
+        "text": "Entrei na graduação em Engenharia de Software. A formatura está prevista para 2029."
+      },
+      {
+        "when": "2026",
+        "title": "Talent Summit",
+        "text": "Participei do Talent Summit 2026 da FIAP."
+      },
+      {
+        "when": "Jun/2026",
+        "title": "Global Solution",
+        "text": "Concluí um protótipo que simula a troca de chaves quânticas via satélite."
+      },
+      {
+        "when": "24/10/2026",
+        "title": "REVI no NEXT 2026",
+        "text": "O REVI, projeto do meu grupo, vai ser apresentado no NEXT. E o caminho continua."
+      }
+    ]
+  },
+  "experience": {
+    "index": "02",
+    "title": "Experiência",
+    "role": "Estagiário de Suporte de TI",
+    "company": "Bozza",
+    "period": "Out/2025 – hoje",
+    "highlightLabel": "Destaque",
+    "highlightTitle": "TV do RH",
+    "highlightText": "Aprendi o SlideShow TV pela documentação e implantei na Bozza para exibir os recados internos da empresa. Antes, o RH espalhava papéis para comunicar a equipe; agora a comunicação é digital, mais rápida, mais barata e de fácil acesso para todos.",
+    "toolsLabel": "Ferramentas do dia a dia",
+    "items": [
+      {
+        "title": "Onboarding",
+        "text": "Criei um formulário para o RH e para os gestores de cada setor, o que melhorou a absorção de informações dos novos colaboradores."
+      },
+      {
+        "title": "Setor de TI organizado",
+        "text": "Fiz a organização geral dos equipamentos do setor de TI."
+      },
+      {
+        "title": "No dia a dia",
+        "text": "Atendo chamados, dou suporte a usuários, faço manutenção de computadores e formato Windows 10 e 11."
+      }
+    ]
+  },
+  "projects": {
+    "index": "03",
+    "title": "Projetos",
+    "intro": "Quatro projetos, cada um me ensinou algo diferente.",
+    "featuredLabel": "Em destaque",
+    "partLabel": "Minha parte",
+    "learnedLabel": "O que aprendi",
+    "teamLabel": "Equipe",
+    "meLabel": "eu",
+    "codeLabel": "Ver código",
+    "codeSoon": "Código em breve",
+    "teamAria": "LinkedIn de",
+    "items": {
+      "revi": {
+        "tag": "FIAP × Jovi Mobile",
+        "name": "REVI",
+        "status": "Selecionado para o NEXT 2026 · 24/10",
+        "summary": "Um hub de aprendizado cognitivo para o smartphone da Jovi. Usa OCR e IA (Gemini) para transformar fotos de aula em material de estudo, como resumos, flashcards e simulados. Apresentamos o projeto para a Jovi Mobile na FIAP e ele foi selecionado para o NEXT 2026.",
+        "part": "Back-end e documentação do projeto e do sistema.",
+        "learned": "Trabalhar em equipe com prazos de sprint, escrever documentação que outras pessoas conseguem seguir e ver um produto sendo apresentado para uma empresa de verdade."
+      },
+      "gs": {
+        "tag": "FIAP · Global Solution 2026",
+        "name": "QKD Satellite Security Prototype",
+        "status": "Concluído em jun/2026",
+        "summary": "Um protótipo em Arduino que simula a distribuição quântica de chaves (QKD) via satélite. LEDs representam os fótons, o sistema mede os estados, calcula a taxa de erro (QBER) e rejeita a chave quando ela passa de 11%.",
+        "part": "O protótipo em hardware: Arduino Uno, C++, display LCD I2C, buzzer, LEDs e potenciômetro, com simulação no Wokwi.",
+        "learned": "O desafio foi pegar um assunto bem abstrato e deixar ele visível e interativo. Aprendi a dividir o trabalho em equipe e a explicar um tema complexo de um jeito visual."
+      },
+      "gogames": {
+        "tag": "Clean Code",
+        "name": "GoGames",
+        "status": "Projeto de estudo",
+        "summary": "Uma loja virtual em Python que simula uma compra, com carrinho e cálculo de frete por estado.",
+        "part": "O projeto inteiro, com foco em escrever código limpo.",
+        "learned": "Funções com uma responsabilidade só, código sem repetição e dados separados da lógica. Código que qualquer pessoa consegue ler e mudar."
+      },
+      "tcc": {
+        "tag": "SENAI · TCC",
+        "name": "Reconhecimento facial para pacientes",
+        "status": "Concluído em dez/2024",
+        "summary": "Um sistema em Python que usa reconhecimento facial para agilizar o atendimento de pacientes em convênios médicos.",
+        "part": "O desenvolvimento em Python com face-recognition, OpenCV, Pillow e NumPy.",
+        "learned": "Foi meu primeiro contato com visão computacional e meu primeiro projeto grande tocado do início ao fim. Aprendi a partir de um problema real, a lentidão no atendimento, e a transformar isso numa solução que funciona."
+      }
+    }
+  },
+  "skills": {
+    "index": "04",
+    "title": "Skills",
+    "intro": "Tecnologias que eu conheço e uso nos meus projetos e estudos.",
+    "groups": {
+      "languages": "Linguagens",
+      "frontend": "Front-end",
+      "dataCloud": "Dados e nuvem",
+      "design": "Design"
+    }
+  },
+  "certifications": {
+    "index": "05",
+    "title": "Certificações",
+    "intro": "Nove certificados, organizados por tema.",
+    "marquee": [
+      "Python",
+      "Arduino",
+      "OpenCV",
+      "Clean Code",
+      "Git e GitHub",
+      "Cloud",
+      "Dados",
+      "IA Generativa",
+      "Engenharia de Prompt",
+      "LGPD",
+      "Web 3.0"
+    ],
+    "groups": [
+      {
+        "title": "Nuvem e dados",
+        "items": [
+          {
+            "name": "AWS Cloud Practitioner Foundational: Implementação de Serviços em Nuvem",
+            "org": "SENAI"
+          },
+          {
+            "name": "Microsoft DP-900: Implementação e Análise de Dados em Nuvem",
+            "org": "SENAI"
+          }
+        ]
+      },
+      {
+        "title": "Segurança e web",
+        "items": [
+          {
+            "name": "Privacidade e Proteção de Dados (LGPD)",
+            "org": "SENAI"
+          },
+          {
+            "name": "Web 3.0",
+            "org": "SENAI"
+          }
+        ]
+      },
+      {
+        "title": "Programação",
+        "items": [
+          {
+            "name": "Java aplicado à Orientação a Objetos",
+            "org": "Alura"
+          },
+          {
+            "name": "Git e GitHub: compartilhando e colaborando em projetos",
+            "org": "Alura"
+          },
+          {
+            "name": "Pensamento computacional: computação e lógica de programação",
+            "org": "Alura"
+          }
+        ]
+      },
+      {
+        "title": "Inteligência artificial",
+        "items": [
+          {
+            "name": "Flash Skills: ChatGPT",
+            "org": "Alura"
+          },
+          {
+            "name": "Engenharia de Prompt: criando prompts eficazes para IA Generativa",
+            "org": "Alura"
+          }
+        ]
+      }
+    ]
+  },
+  "milestones": {
+    "index": "06",
+    "title": "Marcos",
+    "intro": "Momentos que marcaram o caminho até aqui.",
+    "items": [
+      {
+        "when": "24/10/2026",
+        "title": "NEXT 2026",
+        "text": "O REVI, projeto do meu grupo na FIAP, vai ser apresentado no NEXT 2026."
+      },
+      {
+        "when": "2026",
+        "title": "Apresentação para a Jovi Mobile",
+        "text": "Apresentei o REVI para a Jovi Mobile, a empresa do desafio, dentro da FIAP."
+      },
+      {
+        "when": "2026",
+        "title": "Talent Summit",
+        "text": "Participei do Talent Summit 2026 da FIAP."
+      },
+      {
+        "when": "Próximo",
+        "title": "Mais eventos",
+        "text": "Quero ir a mais eventos de tecnologia. Vou contando por aqui."
+      }
+    ]
+  },
+  "contact": {
+    "index": "07",
+    "title": "Contato",
+    "heading": "Vamos conversar?",
+    "text": "Se curtiu o caminho até aqui, vou gostar de trocar uma ideia. O currículo está logo abaixo e o LinkedIn é o jeito mais rápido de falar comigo.",
+    "resume": "Baixar currículo",
+    "top": "Voltar ao topo",
+    "footer": "Feito com Next.js, Tailwind CSS e Framer Motion."
+  }
+}

@@ -1,0 +1,303 @@
+{
+  "meta": {
+    "title": "Murilo Gomes | Software Engineering Student",
+    "description": "Murilo Gomes's portfolio: his journey, projects, certifications and growth in software development."
+  },
+  "header": {
+    "themeToLight": "Light mode",
+    "themeToDark": "Dark mode",
+    "themeAria": "Toggle theme",
+    "langAria": "Language",
+    "home": "Back to the start",
+    "skipToContent": "Skip to content",
+    "navAria": "Site sections",
+    "nav": {
+      "journey": "Journey",
+      "experience": "Experience",
+      "projects": "Projects",
+      "skills": "Skills",
+      "certifications": "Certifications",
+      "milestones": "Milestones",
+      "contact": "Contact"
+    }
+  },
+  "intro": {
+    "label": "Loading the portfolio",
+    "skip": "Skip"
+  },
+  "hero": {
+    "firstName": "Murilo",
+    "lastName": "Gomes",
+    "role": "Software Engineering Student",
+    "tagline": "I learn something new every day and like to prove it in practice. Here's the path so far: every course, every project and every step of my growth.",
+    "badge": "Learning since 2023",
+    "photoAlt": "Photo of Murilo Gomes",
+    "resume": "Download resume",
+    "journey": "See my journey",
+    "links": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "email": "Email"
+    },
+    "stats": {
+      "certifications": "Certifications",
+      "projects": "Projects",
+      "years": "Years of steady learning"
+    },
+    "scroll": "Scroll to continue"
+  },
+  "journey": {
+    "index": "01",
+    "title": "Journey",
+    "statement": "I wasn't born knowing how to code. I learned one course, one project and one mistake at a time, and I haven't stopped since.",
+    "statementHighlight": [
+      "course",
+      "project",
+      "mistake",
+      "stopped"
+    ],
+    "nowLabel": "Up next",
+    "items": [
+      {
+        "when": "Feb 2023",
+        "title": "Starting at SENAI",
+        "text": "I enrolled in the Systems Analysis and Development technical program and started studying programming for real."
+      },
+      {
+        "when": "2023–2024",
+        "title": "Certifications along the way",
+        "text": "I collected certificates while I studied: LGPD (Brazil's data protection law), AWS Cloud Practitioner, Microsoft DP-900 and Web 3.0."
+      },
+      {
+        "when": "Dec 2024",
+        "title": "Capstone and graduation",
+        "text": "I finished the program with a capstone project on facial recognition in Python, built to speed up patient check-in at medical insurance clinics."
+      },
+      {
+        "when": "2025",
+        "title": "A year of online courses",
+        "text": "I focused on courses at Alura, Rocketseat and Hashtag Treinamentos. No classroom and no rush, but no stopping either."
+      },
+      {
+        "when": "Oct 2025",
+        "title": "Internship at Bozza",
+        "text": "I started as an IT support intern, solving real problems for real people."
+      },
+      {
+        "when": "Feb 2026",
+        "title": "Arriving at FIAP",
+        "text": "I started my bachelor's degree in Software Engineering. Graduation is expected in 2029."
+      },
+      {
+        "when": "2026",
+        "title": "Talent Summit",
+        "text": "I attended FIAP's Talent Summit 2026."
+      },
+      {
+        "when": "Jun 2026",
+        "title": "Global Solution",
+        "text": "I wrapped up a prototype that simulates quantum key exchange over a satellite link."
+      },
+      {
+        "when": "Oct 24, 2026",
+        "title": "REVI at NEXT 2026",
+        "text": "REVI, my team's project, is being presented at NEXT. And the path keeps going."
+      }
+    ]
+  },
+  "experience": {
+    "index": "02",
+    "title": "Experience",
+    "role": "IT Support Intern",
+    "company": "Bozza",
+    "period": "Oct 2025 – present",
+    "highlightLabel": "Highlight",
+    "highlightTitle": "HR TV",
+    "highlightText": "I learned SlideShow TV from its documentation and rolled it out at Bozza to display the company's internal announcements. HR used to hand out paper notices to reach the team; now the communication is digital, faster, cheaper and easy for everyone to access.",
+    "toolsLabel": "Everyday tools",
+    "items": [
+      {
+        "title": "Onboarding",
+        "text": "I built a form for HR and each department's managers, which helped new hires absorb information faster."
+      },
+      {
+        "title": "An organized IT room",
+        "text": "I reorganized all of the equipment in the IT department."
+      },
+      {
+        "title": "Day to day",
+        "text": "I handle support tickets, help users, maintain computers and reinstall Windows 10 and 11."
+      }
+    ]
+  },
+  "projects": {
+    "index": "03",
+    "title": "Projects",
+    "intro": "Four projects, and each one taught me something different.",
+    "featuredLabel": "Featured",
+    "partLabel": "My part",
+    "learnedLabel": "What I learned",
+    "teamLabel": "Team",
+    "meLabel": "me",
+    "codeLabel": "View code",
+    "codeSoon": "Code coming soon",
+    "teamAria": "LinkedIn of",
+    "items": {
+      "revi": {
+        "tag": "FIAP × Jovi Mobile",
+        "name": "REVI",
+        "status": "Selected for NEXT 2026 · Oct 24",
+        "summary": "A cognitive learning hub for Jovi's smartphone. It uses OCR and AI (Gemini) to turn photos from class into study material, like summaries, flashcards and practice tests. We presented it to Jovi Mobile at FIAP, and it was selected for NEXT 2026.",
+        "part": "Back-end and documentation for both the project and the system.",
+        "learned": "Working as a team on sprint deadlines, writing documentation other people can actually follow, and seeing a product get presented to a real company."
+      },
+      "gs": {
+        "tag": "FIAP · Global Solution 2026",
+        "name": "QKD Satellite Security Prototype",
+        "status": "Finished in Jun 2026",
+        "summary": "An Arduino prototype that simulates quantum key distribution (QKD) over a satellite link. LEDs stand in for photons, the system measures their states, calculates the error rate (QBER) and rejects the key when it goes above 11%.",
+        "part": "The hardware prototype: Arduino Uno, C++, an I2C LCD, a buzzer, LEDs and a potentiometer, plus a simulation in Wokwi.",
+        "learned": "The challenge was taking a very abstract topic and making it visible and interactive. I learned how to split work across a team and how to explain a complex subject visually."
+      },
+      "gogames": {
+        "tag": "Clean Code",
+        "name": "GoGames",
+        "status": "Study project",
+        "summary": "An online store in Python that simulates a purchase, with a shopping cart and shipping costs calculated by state.",
+        "part": "The whole project, with a focus on writing clean code.",
+        "learned": "Single-responsibility functions, no repeated code, and data kept separate from logic. Code that anyone can read and change."
+      },
+      "tcc": {
+        "tag": "SENAI · Capstone",
+        "name": "Facial recognition for patients",
+        "status": "Finished in Dec 2024",
+        "summary": "A Python system that uses facial recognition to speed up patient check-in at medical insurance clinics.",
+        "part": "The development in Python with face-recognition, OpenCV, Pillow and NumPy.",
+        "learned": "It was my first time working with computer vision and my first big project carried from start to finish. I learned to start from a real problem, slow check-ins, and turn it into something that works."
+      }
+    }
+  },
+  "skills": {
+    "index": "04",
+    "title": "Skills",
+    "intro": "Technologies I know and use in my projects and studies.",
+    "groups": {
+      "languages": "Languages",
+      "frontend": "Front-end",
+      "dataCloud": "Data and cloud",
+      "design": "Design"
+    }
+  },
+  "certifications": {
+    "index": "05",
+    "title": "Certifications",
+    "intro": "Nine certificates, grouped by topic.",
+    "marquee": [
+      "Python",
+      "Arduino",
+      "OpenCV",
+      "Clean Code",
+      "Git and GitHub",
+      "Cloud",
+      "Data",
+      "Generative AI",
+      "Prompt Engineering",
+      "LGPD",
+      "Web 3.0"
+    ],
+    "groups": [
+      {
+        "title": "Cloud and data",
+        "items": [
+          {
+            "name": "AWS Cloud Practitioner Foundational: Implementing Cloud Services",
+            "org": "SENAI"
+          },
+          {
+            "name": "Microsoft DP-900: Implementing and Analyzing Data in the Cloud",
+            "org": "SENAI"
+          }
+        ]
+      },
+      {
+        "title": "Security and web",
+        "items": [
+          {
+            "name": "Privacy and Data Protection (LGPD)",
+            "org": "SENAI"
+          },
+          {
+            "name": "Web 3.0",
+            "org": "SENAI"
+          }
+        ]
+      },
+      {
+        "title": "Programming",
+        "items": [
+          {
+            "name": "Java Applied to Object-Oriented Programming",
+            "org": "Alura"
+          },
+          {
+            "name": "Git and GitHub: Sharing and Collaborating on Projects",
+            "org": "Alura"
+          },
+          {
+            "name": "Computational Thinking: Computing and Programming Logic",
+            "org": "Alura"
+          }
+        ]
+      },
+      {
+        "title": "Artificial intelligence",
+        "items": [
+          {
+            "name": "Flash Skills: ChatGPT",
+            "org": "Alura"
+          },
+          {
+            "name": "Prompt Engineering: Writing Effective Prompts for Generative AI",
+            "org": "Alura"
+          }
+        ]
+      }
+    ]
+  },
+  "milestones": {
+    "index": "06",
+    "title": "Milestones",
+    "intro": "Moments that marked the road so far.",
+    "items": [
+      {
+        "when": "Oct 24, 2026",
+        "title": "NEXT 2026",
+        "text": "REVI, my team's project at FIAP, is being presented at NEXT 2026."
+      },
+      {
+        "when": "2026",
+        "title": "Presenting to Jovi Mobile",
+        "text": "I presented REVI to Jovi Mobile, the company behind the challenge, at FIAP."
+      },
+      {
+        "when": "2026",
+        "title": "Talent Summit",
+        "text": "I attended FIAP's Talent Summit 2026."
+      },
+      {
+        "when": "Next",
+        "title": "More events",
+        "text": "I want to go to more tech events. I'll keep updating this."
+      }
+    ]
+  },
+  "contact": {
+    "index": "07",
+    "title": "Contact",
+    "heading": "Let's talk?",
+    "text": "If you liked the path so far, I'd love to chat. My resume is right below, and LinkedIn is the fastest way to reach me.",
+    "resume": "Download resume",
+    "top": "Back to top",
+    "footer": "Built with Next.js, Tailwind CSS and Framer Motion."
+  }
+}
