@@ -27,6 +27,8 @@ export default function TiltCard({
   const reduceMotion = useReducedMotion();
   const enabled = hasMouse && !reduceMotion;
   const [hovering, setHovering] = useState(false);
+  // Sobre mídia (ex.: vídeo com controles) o card fica parado e sem etiqueta
+  const [overMedia, setOverMedia] = useState(false);
 
   const rotateX = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
   const rotateY = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
@@ -35,6 +37,13 @@ export default function TiltCard({
 
   const onMove = (event: React.PointerEvent) => {
     if (!enabled || !ref.current) return;
+    const media = (event.target as HTMLElement).closest("[data-no-tilt]");
+    setOverMedia(!!media);
+    if (media) {
+      rotateX.set(0);
+      rotateY.set(0);
+      return;
+    }
     const rect = ref.current.getBoundingClientRect();
     const px = (event.clientX - rect.left) / rect.width - 0.5;
     const py = (event.clientY - rect.top) / rect.height - 0.5;
@@ -48,6 +57,7 @@ export default function TiltCard({
     rotateX.set(0);
     rotateY.set(0);
     setHovering(false);
+    setOverMedia(false);
   };
 
   return (
@@ -65,7 +75,10 @@ export default function TiltCard({
         <motion.span
           aria-hidden
           style={{ x: labelX, y: labelY }}
-          animate={{ opacity: hovering ? 1 : 0, scale: hovering ? 1 : 0.6 }}
+          animate={{
+            opacity: hovering && !overMedia ? 1 : 0,
+            scale: hovering && !overMedia ? 1 : 0.6,
+          }}
           transition={{ duration: 0.2 }}
           className="pointer-events-none absolute left-0 top-0 z-20 translate-x-5 translate-y-5 whitespace-nowrap rounded-full bg-fg px-3 py-1 text-xs font-semibold text-bg"
         >

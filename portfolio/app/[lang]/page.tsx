@@ -5,7 +5,6 @@ import Certifications from "@/components/sections/Certifications";
 import Contact from "@/components/sections/Contact";
 import Experience from "@/components/sections/Experience";
 import Journey from "@/components/sections/Journey";
-import Milestones from "@/components/sections/Milestones";
 import Projects from "@/components/sections/Projects";
 import Skills from "@/components/sections/Skills";
 import { hasLocale } from "@/lib/i18n";
@@ -31,7 +30,6 @@ export default async function Home({
         <Projects dict={dict.projects} />
         <Skills dict={dict.skills} />
         <Certifications dict={dict.certifications} />
-        <Milestones dict={dict.milestones} />
         <Contact dict={dict.contact} hero={dict.hero} />
       </main>
     </>

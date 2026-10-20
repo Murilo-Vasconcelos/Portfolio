@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
 import Reveal from "@/components/Reveal";
 import SectionShell from "@/components/SectionShell";
@@ -33,6 +34,54 @@ function Detail({ label, text }: { label: string; text: string }) {
   );
 }
 
+// Imagem do projeto: aparece inteira (sem cortar), na proporção original,
+// dentro de uma moldura com borda fina.
+function ProjectImage({
+  image,
+  alt,
+  video,
+}: {
+  image: { src: string; width: number; height: number };
+  alt: string;
+  video?: string;
+}) {
+  return (
+    <div
+      data-no-tilt={video ? "" : undefined}
+      className="relative z-10 overflow-hidden rounded-2xl border border-line bg-[#282a36]"
+    >
+      {video ? (
+        // Vídeo só baixa quando a pessoa clica em play (preload="none"); o
+        // print serve de capa. Sem áudio, então não precisa de legenda.
+        <video
+          controls
+          muted
+          playsInline
+          preload="none"
+          poster={image.src}
+          aria-label={alt}
+          width={image.width}
+          height={image.height}
+          className="h-auto w-full"
+        >
+          <source src={video} type="video/mp4" />
+          <source src={video.replace(".mp4", ".webm")} type="video/webm" />
+        </video>
+      ) : (
+        <Image
+          src={image.src}
+          alt={alt}
+          width={image.width}
+          height={image.height}
+          sizes="(min-width: 1024px) 520px, (min-width: 768px) 45vw, 90vw"
+        unoptimized
+          className="h-auto w-full"
+        />
+      )}
+    </div>
+  );
+}
+
 // Link que cobre o card inteiro (o clique funciona em qualquer parte dele)
 function CodeLink({ href, label }: { href: string; label: string }) {
   return (
@@ -50,13 +99,7 @@ function CodeLink({ href, label }: { href: string; label: string }) {
   );
 }
 
-function FeaturedProject({
-  project,
-  dict,
-}: {
-  project: Project;
-  dict: Dict;
-}) {
+function FeaturedProject({ project, dict }: { project: Project; dict: Dict }) {
   const text = dict.items[project.id];
 
   return (
@@ -150,11 +193,18 @@ function ProjectCard({
   const text = dict.items[project.id];
 
   return (
-    <Reveal delay={delay} className="h-full">
+    <Reveal delay={delay}>
       <TiltCard
         label={project.repo ? dict.codeLabel : undefined}
-        className="flex h-full min-w-0 flex-col gap-5 rounded-3xl border border-line bg-surface p-6 transition-colors hover:border-fg"
+        className="flex min-w-0 flex-col gap-5 rounded-3xl border border-line bg-surface p-6 transition-colors hover:border-fg"
       >
+        {"image" in project && "imageAlt" in text && (
+          <ProjectImage
+            image={project.image}
+            alt={text.imageAlt}
+            video={"video" in project ? project.video : undefined}
+          />
+        )}
         <p className="font-display text-xs uppercase tracking-[0.2em] text-muted">
           {text.tag}
         </p>
@@ -166,7 +216,9 @@ function ProjectCard({
         <Detail label={dict.partLabel} text={text.part} />
         <Detail label={dict.learnedLabel} text={text.learned} />
         <TechChips tech={project.tech} />
-        {project.repo && <CodeLink href={project.repo} label={dict.codeLabel} />}
+        {project.repo && (
+          <CodeLink href={project.repo} label={dict.codeLabel} />
+        )}
       </TiltCard>
     </Reveal>
   );
@@ -185,7 +237,7 @@ export default function Projects({ dict }: { dict: Dict }) {
     >
       <div className="space-y-6">
         {featured && <FeaturedProject project={featured} dict={dict} />}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-2">
           {others.map((project, index) => (
             <ProjectCard
               key={project.id}

@@ -33,14 +33,7 @@ export default function Skills({ dict }: { dict: Dictionary["skills"] }) {
                         id={item.id}
                         className="h-12 w-12 transition-transform duration-300 group-hover:scale-110"
                       />
-                      <span className="flex flex-col gap-0.5 text-sm font-semibold">
-                        {item.name}
-                        {"note" in item && (
-                          <span className="text-xs font-normal opacity-70">
-                            {item.note}
-                          </span>
-                        )}
-                      </span>
+                      <span className="text-sm font-semibold">{item.name}</span>
                     </div>
                   </Reveal>
                 </li>

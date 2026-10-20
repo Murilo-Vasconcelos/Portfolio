@@ -15,7 +15,6 @@ type HeaderDict = {
     projects: string;
     skills: string;
     certifications: string;
-    milestones: string;
     contact: string;
   };
 };
@@ -33,7 +32,6 @@ export default function Header({
     { href: "#projetos", label: dict.nav.projects },
     { href: "#skills", label: dict.nav.skills },
     { href: "#certificacoes", label: dict.nav.certifications },
-    { href: "#marcos", label: dict.nav.milestones },
     { href: "#contato", label: dict.nav.contact },
   ];
 

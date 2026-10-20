@@ -19,7 +19,7 @@ export const profile = {
   // Números que sobem na abertura. Atualize quando tiver novidade.
   stats: [
     { id: "certifications", value: 9, suffix: "" },
-    { id: "projects", value: 4, suffix: "" },
+    { id: "projects", value: 5, suffix: "" },
     { id: "years", value: 3, suffix: "+" },
   ],
 } as const;

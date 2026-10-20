@@ -17,7 +17,6 @@
       "projects": "Projetos",
       "skills": "Skills",
       "certifications": "Certificações",
-      "milestones": "Marcos",
       "contact": "Contato"
     }
   },
@@ -99,9 +98,19 @@
         "text": "Concluí um protótipo que simula a troca de chaves quânticas via satélite."
       },
       {
+        "when": "17/09/2026",
+        "title": "Apresentação para a Jovi Mobile",
+        "text": "Apresentei o REVI para a Jovi Mobile, a empresa do desafio, dentro da FIAP."
+      },
+      {
         "when": "24/10/2026",
         "title": "REVI no NEXT 2026",
-        "text": "O REVI, projeto do meu grupo, vai ser apresentado no NEXT. E o caminho continua."
+        "text": "O REVI, projeto do meu grupo na FIAP, vai ser apresentado no NEXT 2026."
+      },
+      {
+        "when": "Depois do NEXT",
+        "title": "Mais eventos",
+        "text": "Quero ir a mais eventos de tecnologia. O caminho continua e eu vou contando por aqui."
       }
     ]
   },
@@ -133,7 +142,7 @@
   "projects": {
     "index": "03",
     "title": "Projetos",
-    "intro": "Quatro projetos, cada um me ensinou algo diferente.",
+    "intro": "Cinco projetos, cada um me ensinou algo diferente.",
     "featuredLabel": "Em destaque",
     "partLabel": "Minha parte",
     "learnedLabel": "O que aprendi",
@@ -157,7 +166,8 @@
         "status": "Concluído em jun/2026",
         "summary": "Um protótipo em Arduino que simula a distribuição quântica de chaves (QKD) via satélite. LEDs representam os fótons, o sistema mede os estados, calcula a taxa de erro (QBER) e rejeita a chave quando ela passa de 11%.",
         "part": "O protótipo em hardware: Arduino Uno, C++, display LCD I2C, buzzer, LEDs e potenciômetro, com simulação no Wokwi.",
-        "learned": "O desafio foi pegar um assunto bem abstrato e deixar ele visível e interativo. Aprendi a dividir o trabalho em equipe e a explicar um tema complexo de um jeito visual."
+        "learned": "O desafio foi pegar um assunto bem abstrato e deixar ele visível e interativo. Aprendi a dividir o trabalho em equipe e a explicar um tema complexo de um jeito visual.",
+        "imageAlt": "Simulação no Wokwi do protótipo em Arduino: LEDs verdes, amarelos e vermelhos, potenciômetro, buzzer, botão e display LCD. Clique para ver o vídeo da simulação."
       },
       "gogames": {
         "tag": "Clean Code",
@@ -165,27 +175,37 @@
         "status": "Projeto de estudo",
         "summary": "Uma loja virtual em Python que simula uma compra, com carrinho e cálculo de frete por estado.",
         "part": "O projeto inteiro, com foco em escrever código limpo.",
-        "learned": "Funções com uma responsabilidade só, código sem repetição e dados separados da lógica. Código que qualquer pessoa consegue ler e mudar."
+        "learned": "Funções com uma responsabilidade só, código sem repetição e dados separados da lógica. Código que qualquer pessoa consegue ler e mudar.",
+        "imageAlt": "Terminal com o menu da loja GoGames: conhecer a loja, finalizar a compra e sair, com o valor total da compra."
       },
       "tcc": {
         "tag": "SENAI · TCC",
         "name": "Reconhecimento facial para pacientes",
         "status": "Concluído em dez/2024",
         "summary": "Um sistema em Python que usa reconhecimento facial para agilizar o atendimento de pacientes em convênios médicos.",
-        "part": "O desenvolvimento em Python com face-recognition, OpenCV, Pillow e NumPy.",
-        "learned": "Foi meu primeiro contato com visão computacional e meu primeiro projeto grande tocado do início ao fim. Aprendi a partir de um problema real, a lentidão no atendimento, e a transformar isso numa solução que funciona."
+        "part": "O desenvolvimento em Python com face-recognition, OpenCV, Pillow e NumPy, e o banco de dados em MySQL.",
+        "learned": "Foi meu primeiro contato com visão computacional e meu primeiro projeto grande tocado do início ao fim. Aprendi a partir de um problema real, a lentidão no atendimento, e a transformar isso numa solução que funciona.",
+        "imageAlt": "Janela do sistema de reconhecimento facial reconhecendo um paciente, com moldura verde no rosto e os dados na tela: nome, idade, CPF parcialmente oculto, última consulta, agendamento e procedimento."
+      },
+      "portfolio": {
+        "tag": "Projeto pessoal",
+        "name": "Este portfólio",
+        "status": "Em evolução",
+        "summary": "O site que você está vendo: uma página que conta minha trajetória profissional e acadêmica por rolagem, em português e inglês, com tema claro e escuro e animações.",
+        "part": "Conteúdo, estrutura, escolha das referências visuais e revisão de cada etapa, com IA como apoio no desenvolvimento.",
+        "learned": "Organizar uma página inteira em componentes, trabalhar com dois idiomas e dois temas e testar em vários tamanhos de tela. Também aprendi a pedir com clareza, revisar o que foi gerado e corrigir o que não ficou bom.",
+        "imageAlt": "Página inicial deste portfólio, com o nome Murilo Gomes em destaque, botões de currículo e jornada e os números de certificações, projetos e anos de estudo."
       }
     }
   },
   "skills": {
     "index": "04",
     "title": "Skills",
-    "intro": "Tecnologias que eu conheço e uso nos meus projetos e estudos.",
+    "intro": "As tecnologias que realmente usei nos projetos desta página.",
     "groups": {
       "languages": "Linguagens",
       "frontend": "Front-end",
-      "dataCloud": "Dados e nuvem",
-      "design": "Design"
+      "data": "Dados"
     }
   },
   "certifications": {
@@ -264,35 +284,8 @@
       }
     ]
   },
-  "milestones": {
-    "index": "06",
-    "title": "Marcos",
-    "intro": "Momentos que marcaram o caminho até aqui.",
-    "items": [
-      {
-        "when": "24/10/2026",
-        "title": "NEXT 2026",
-        "text": "O REVI, projeto do meu grupo na FIAP, vai ser apresentado no NEXT 2026."
-      },
-      {
-        "when": "2026",
-        "title": "Apresentação para a Jovi Mobile",
-        "text": "Apresentei o REVI para a Jovi Mobile, a empresa do desafio, dentro da FIAP."
-      },
-      {
-        "when": "2026",
-        "title": "Talent Summit",
-        "text": "Participei do Talent Summit 2026 da FIAP."
-      },
-      {
-        "when": "Próximo",
-        "title": "Mais eventos",
-        "text": "Quero ir a mais eventos de tecnologia. Vou contando por aqui."
-      }
-    ]
-  },
   "contact": {
-    "index": "07",
+    "index": "06",
     "title": "Contato",
     "heading": "Vamos conversar?",
     "text": "Se curtiu o caminho até aqui, vou gostar de trocar uma ideia. O currículo está logo abaixo e o LinkedIn é o jeito mais rápido de falar comigo.",

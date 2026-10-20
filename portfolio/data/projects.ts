@@ -1,4 +1,7 @@
-// Dados dos projetos que não mudam de idioma (links e tecnologias).
+// Dados dos projetos que não mudam de idioma (links, imagens e tecnologias).
+// Para colocar uma imagem num projeto, salve o print em public/images/projects/
+// e acrescente `image: { src, width, height }` ao projeto (e `imageAlt` nos
+// dicionários pt.json e en.json).
 // Os textos de cada projeto ficam nos dicionários, em pt.json e en.json.
 
 export const projects = [
@@ -13,6 +16,13 @@ export const projects = [
   {
     id: "gs",
     featured: false,
+    // Vídeo curto da simulação no Wokwi; o print abaixo aparece antes de dar play.
+    image: {
+      src: "/images/projects/global-solution.webp",
+      width: 1280,
+      height: 778,
+    },
+    video: "/videos/global-solution.mp4",
     repo: "https://github.com/Murilo-Vasconcelos/GS-Edge-Computing" as
       | string
       | null,
@@ -21,6 +31,7 @@ export const projects = [
   {
     id: "gogames",
     featured: false,
+    image: { src: "/images/projects/gogames.webp", width: 1611, height: 1440 },
     repo: "https://github.com/Murilo-Vasconcelos/Projeto-GoGames" as
       | string
       | null,
@@ -29,8 +40,17 @@ export const projects = [
   {
     id: "tcc",
     featured: false,
+    image: { src: "/images/projects/tcc.webp", width: 1923, height: 1533 },
     repo: "https://github.com/Murilo-Vasconcelos/Projeto-TCC" as string | null,
-    tech: ["Python", "OpenCV", "face-recognition", "Pillow", "NumPy"],
+    tech: ["Python", "OpenCV", "face-recognition", "Pillow", "NumPy", "SQL", "MySQL"],
+  },
+  {
+    id: "portfolio",
+    featured: false,
+    image: { src: "/images/projects/portfolio.webp", width: 1440, height: 900 },
+    // Coloque aqui o link do repositório deste portfólio no GitHub.
+    repo: null as string | null,
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "HTML", "CSS"],
   },
 ] as const;
 
