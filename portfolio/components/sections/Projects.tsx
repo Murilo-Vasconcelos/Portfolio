@@ -40,10 +40,12 @@ function ProjectImage({
   image,
   alt,
   video,
+  webm,
 }: {
   image: { src: string; width: number; height: number };
   alt: string;
   video?: string;
+  webm?: boolean;
 }) {
   return (
     <div
@@ -55,7 +57,6 @@ function ProjectImage({
         // print serve de capa. Sem áudio, então não precisa de legenda.
         <video
           controls
-          muted
           playsInline
           preload="none"
           poster={image.src}
@@ -65,7 +66,9 @@ function ProjectImage({
           className="h-auto w-full"
         >
           <source src={video} type="video/mp4" />
-          <source src={video.replace(".mp4", ".webm")} type="video/webm" />
+          {webm && (
+            <source src={video.replace(".mp4", ".webm")} type="video/webm" />
+          )}
         </video>
       ) : (
         <Image
@@ -74,7 +77,7 @@ function ProjectImage({
           width={image.width}
           height={image.height}
           sizes="(min-width: 1024px) 520px, (min-width: 768px) 45vw, 90vw"
-        unoptimized
+          unoptimized
           className="h-auto w-full"
         />
       )}
@@ -135,6 +138,14 @@ function FeaturedProject({ project, dict }: { project: Project; dict: Dict }) {
           </div>
 
           <div className="flex flex-col gap-6 lg:border-l lg:border-line lg:pl-10">
+            {"image" in project && "imageAlt" in text && (
+              <ProjectImage
+                image={project.image}
+                alt={text.imageAlt}
+                video={"video" in project ? project.video : undefined}
+                webm={"videoWebm" in project}
+              />
+            )}
             <div>
               <p className="font-display text-xs uppercase tracking-[0.25em] text-muted">
                 {dict.teamLabel}
@@ -203,6 +214,7 @@ function ProjectCard({
             image={project.image}
             alt={text.imageAlt}
             video={"video" in project ? project.video : undefined}
+            webm={"videoWebm" in project}
           />
         )}
         <p className="font-display text-xs uppercase tracking-[0.2em] text-muted">

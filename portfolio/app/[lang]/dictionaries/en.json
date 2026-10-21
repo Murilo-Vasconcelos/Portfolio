@@ -158,7 +158,8 @@
         "status": "Selected for NEXT 2026 · Oct 24",
         "summary": "A cognitive learning hub for Jovi's smartphone. It uses OCR and AI (Gemini) to turn photos from class into study material, like summaries, flashcards and practice tests. We presented it to Jovi Mobile at FIAP, and it was selected for NEXT 2026.",
         "part": "Back-end and documentation for both the project and the system.",
-        "learned": "Working as a team on sprint deadlines, writing documentation other people can actually follow, and seeing a product get presented to a real company."
+        "learned": "Working as a team on sprint deadlines, writing documentation other people can actually follow, and seeing a product get presented to a real company.",
+        "imageAlt": "REVI presentation video, with the team, the app screens (flash cards, mind map, tasks, ranking and folders) and the QR code to try it."
       },
       "gs": {
         "tag": "FIAP · Global Solution 2026",

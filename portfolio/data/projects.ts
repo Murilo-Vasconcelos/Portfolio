@@ -8,6 +8,9 @@ export const projects = [
   {
     id: "revi",
     featured: true,
+    // Vídeo de apresentação do REVI (arquivo original, sem recompressão).
+    image: { src: "/images/projects/revi.webp", width: 640, height: 360 },
+    video: "/videos/revi.mp4",
     // Repositório ainda privado até sair o resultado do NEXT 2026.
     // Quando puder divulgar, coloque o link aqui e o botão "Ver código" aparece.
     repo: null as string | null,
@@ -23,6 +26,7 @@ export const projects = [
       height: 778,
     },
     video: "/videos/global-solution.mp4",
+    videoWebm: true,
     repo: "https://github.com/Murilo-Vasconcelos/GS-Edge-Computing" as
       | string
       | null,
