@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
 import ApiErrorBoundary from "@/components/ApiErrorBoundary";
+import { buttonClasses } from "@/components/Button";
 import LatestRepos from "@/components/LatestRepos";
 import ProjectMedia from "@/components/ProjectMedia";
 import Reveal from "@/components/Reveal";
@@ -230,7 +231,11 @@ export default function Projects({
         </ApiErrorBoundary>
         <Link
           href={`/${lang}/projetos`}
-          className="mt-8 inline-block rounded-full border border-fg px-7 py-3.5 text-sm font-semibold transition-colors hover:bg-fg hover:text-bg"
+          className={buttonClasses({
+            variant: "outline",
+            size: "lg",
+            className: "mt-8",
+          })}
         >
           {dict.github.seeAll} →
         </Link>

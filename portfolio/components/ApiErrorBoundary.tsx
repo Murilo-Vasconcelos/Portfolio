@@ -2,6 +2,7 @@
 
 import { catchError, type ErrorInfo } from "next/error";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
+import Button, { buttonClasses } from "@/components/Button";
 
 type Props = {
   dict: Dictionary["projectsPage"]["error"];
@@ -23,18 +24,12 @@ function ApiErrorFallback({ dict, profileUrl }: Props, { retry }: ErrorInfo) {
       </h2>
       <p className="mt-4 max-w-xl text-lg leading-8 text-muted">{dict.text}</p>
       <div className="mt-8 flex flex-wrap gap-3">
-        <button
-          type="button"
-          onClick={() => retry()}
-          className="rounded-full border border-fg bg-fg px-6 py-3 text-sm font-semibold text-bg transition-colors hover:bg-transparent hover:text-fg"
-        >
-          {dict.retry}
-        </button>
+        <Button onClick={() => retry()}>{dict.retry}</Button>
         <a
           href={profileUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-full border border-line px-6 py-3 text-sm font-semibold transition-colors hover:border-fg"
+          className={buttonClasses({ variant: "secondary" })}
         >
           {dict.profile} ↗
         </a>
