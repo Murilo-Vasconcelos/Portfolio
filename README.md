@@ -10,7 +10,8 @@ profissional e acadêmica por rolagem, com tema claro/escuro, PT/EN e animaçõe
 Precisa do Node.js (versão LTS).
 
 ```bash
-npm install
+cd portfolio
+npm install   # também instala os hooks do Git (Husky)
 npm run dev
 ```
 
@@ -67,3 +68,36 @@ lib/i18n.ts     lista de idiomas
 proxy.ts        escolhe o idioma na primeira visita
 public/         currículo em PDF e imagens
 ```
+
+## Padrões e fluxo de trabalho
+
+As regras completas (para pessoas e para a IA) estão no [`CLAUDE.md`](CLAUDE.md).
+
+- **Formatação:** Prettier (com ordenação das classes do Tailwind) e ESLint.
+  `npm run format` formata tudo; `npm run lint` e `npm run typecheck` conferem.
+- **Commits:** [Conventional Commits](https://www.conventionalcommits.org/pt-br/)
+  em português, ex.: `feat(projetos): Adiciona página de detalhe`. Tipos:
+  `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`,
+  `chore`, `revert`.
+- **Branches:** nada vai direto para a `main`. Cada mudança nasce em
+  `feature/<assunto>` (ou `fix/`, `docs/`, `chore/`...) e entra por Pull
+  Request, com o template de `.github/pull_request_template.md`.
+- **Hooks do Git (Husky):**
+  - `pre-commit`: lint-staged roda ESLint e Prettier só nos arquivos alterados
+  - `commit-msg`: commitlint rejeita mensagens fora do padrão
+  - `pre-push`: bloqueia push direto na `main` e nomes de branch fora do padrão
+
+**Por que essas ferramentas:** Husky + lint-staged é o par mais usado no
+ecossistema Node e roda só nos arquivos do commit, então é rápido. A
+alternativa Lefthook é mais rápida em monorepos grandes, mas exige um binário
+à parte e não traz ganho num projeto deste tamanho. O Prettier foi escolhido no
+lugar do Biome porque o ESLint do Next continua necessário (regras de React e
+Core Web Vitals), e o Prettier tem o plugin oficial do Tailwind.
+
+## Harness de IA
+
+- `CLAUDE.md`: arquitetura, convenções, commits, branches e limites do agente
+- `portfolio/AGENTS.md`: aviso do Next.js 16 para ler a documentação local
+- `.claude/settings.json`: libera comandos seguros (lint, build, git local),
+  pede confirmação para `git push` e instalar pacotes, e proíbe ler `.env`,
+  forçar push ou pular os hooks
