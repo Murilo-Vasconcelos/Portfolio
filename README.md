@@ -308,8 +308,35 @@ Core Web Vitals), e o Prettier tem o plugin oficial do Tailwind.
 
 ## Harness de IA
 
-- `CLAUDE.md`: arquitetura, convenções, commits, branches e limites do agente
-- `portfolio/AGENTS.md`: aviso do Next.js 16 para ler a documentação local
-- `.claude/settings.json`: libera comandos seguros (lint, build, git local),
-  pede confirmação para `git push` e instalar pacotes, e proíbe ler `.env`,
-  forçar push ou pular os hooks
+Tudo que orienta o agente de IA (Claude Code) fica versionado no repositório,
+então qualquer pessoa que clonar o projeto tem o mesmo ambiente.
+
+| Peça | Arquivo | Para que serve |
+| --- | --- | --- |
+| Instruções do projeto | `CLAUDE.md` | Arquitetura, convenções, commits, branches e o que o agente precisa perguntar antes de fazer |
+| Aviso do Next 16 | `portfolio/AGENTS.md` | Manda ler a documentação local do Next antes de usar uma API (a versão mudou bastante) |
+| Permissões | `.claude/settings.json` | Libera comandos seguros (lint, testes, build, git local), pede confirmação para `git push` e instalar pacotes, e proíbe ler ou editar `.env`, forçar push ou pular os hooks |
+| Skill | `.claude/skills/nova-funcionalidade/SKILL.md` | Roteiro da branch ao PR: padrão de branch, textos em PT/EN, estados de tela, testes, checagens, commits e PR com o template |
+| Subagente | `.claude/agents/revisor.md` | Revisor só de leitura que confere o diff contra o `CLAUDE.md` (textos fora do dicionário, ação sem login, segredo no código, teste faltando) e responde "pronto para PR" ou "precisa de ajuste" |
+| Hook | `.claude/hooks/formatar.mjs` | Depois de cada edição do agente, roda o Prettier no arquivo; erro de sintaxe volta como aviso para o agente corrigir |
+| MCPs | `.mcp.json` | `next-devtools` (erros, rotas e logs do servidor de desenvolvimento), `playwright` (navegador para conferir a tela) e `supabase` (banco, só leitura) |
+
+**Como as peças se somam:** o `CLAUDE.md` diz as regras, a skill diz a ordem
+dos passos, o hook e os hooks do Git (Husky) garantem formato e mensagens sem
+depender da memória do agente, o revisor confere antes do PR e o CI confere de
+novo no GitHub. Cada camada pega o que a anterior deixou passar.
+
+**Por que assim:**
+
+| Escolha | Comparado com | Critério | O que se aceitou perder |
+| --- | --- | --- | --- |
+| Claude Code com `CLAUDE.md` | Cursor com `.cursorrules`, GitHub Copilot | Roda no terminal e na nuvem, lê skills, subagentes, hooks e MCPs do próprio repositório | Depender de um fornecedor; outras ferramentas leem só parte disso (o `AGENTS.md` é o ponto comum) |
+| Hook de Prettier no agente | Só o `pre-commit` do Husky | O agente já lê o arquivo formatado e não gasta passos ajustando estilo | Um processo a mais a cada edição (menos de 1 segundo) |
+| Subagente revisor | Pedir revisão no mesmo chat | Contexto limpo, só ferramentas de leitura e a régua fixa do `CLAUDE.md` | Mais tempo antes do PR |
+| MCP do Supabase em `read_only` | MCP com escrita, nenhum MCP | O agente consulta o banco real sem risco de apagar dados; mudança continua sendo migração revisada | O agente não aplica migração sozinho |
+| Versões fixas nos MCPs | `@latest` | Mesmo comportamento para todos e no vídeo | Atualizar à mão |
+
+**Para usar:** abra o projeto no Claude Code (`claude` na raiz do repositório)
+e aprove os MCPs na primeira vez. O do Supabase pede login no navegador; para
+limitar a um projeto, acrescente `&project_ref=<id-do-projeto>` à URL em
+`.mcp.json`.
