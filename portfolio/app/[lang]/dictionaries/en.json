@@ -192,6 +192,39 @@
         "learned": "Organizing a whole page into components, handling two languages and two themes, and testing on many screen sizes. I also learned to ask clearly, review what was generated and fix what didn't turn out right.",
         "imageAlt": "Home page of this portfolio, with the name Murilo Gomes in large type, resume and journey buttons, and the numbers for certifications, projects and years of study."
       }
+    },
+    "github": {
+      "title": "Straight from GitHub",
+      "intro": "My latest public repositories, loaded from the GitHub API.",
+      "seeAll": "See all projects"
+    }
+  },
+  "projectsPage": {
+    "metaTitle": "Projects | Murilo Gomes",
+    "metaDescription": "All of Murilo Gomes's public repositories, loaded from the GitHub API.",
+    "index": "GitHub",
+    "title": "Projects",
+    "intro": "All my public repositories, loaded straight from the GitHub API and refreshed every hour.",
+    "back": "Back to home",
+    "backToList": "All projects",
+    "loading": "Loading projects",
+    "updated": "Updated on",
+    "language": "Language",
+    "stars": "Stars",
+    "topics": "Topics",
+    "noDescription": "This repository has no description on GitHub yet.",
+    "repoLink": "View on GitHub",
+    "homepageLink": "Open the site",
+    "empty": {
+      "title": "No projects here yet",
+      "text": "I couldn't find any public repositories on GitHub. Meanwhile, you can check my profile there.",
+      "profile": "Open my GitHub"
+    },
+    "error": {
+      "title": "GitHub didn't respond",
+      "text": "I couldn't load the projects right now. It may be the API rate limit or a hiccup; please try again in a few minutes.",
+      "retry": "Try again",
+      "profile": "Open my GitHub"
     }
   },
   "skills": {
@@ -288,5 +321,13 @@
     "resume": "Download resume",
     "top": "Back to top",
     "footer": "Built with Next.js, Tailwind CSS and Framer Motion."
+  },
+  "notFound": {
+    "metaTitle": "Page not found | Murilo Gomes",
+    "code": "404",
+    "title": "Page not found",
+    "text": "This address doesn't exist or the project was renamed. Go back home or browse the project list.",
+    "home": "Back to home",
+    "projects": "See projects"
   }
 }

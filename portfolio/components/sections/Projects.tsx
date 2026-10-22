@@ -1,10 +1,17 @@
+import Link from "next/link";
+import { Suspense } from "react";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
+import ApiErrorBoundary from "@/components/ApiErrorBoundary";
+import LatestRepos from "@/components/LatestRepos";
 import ProjectMedia from "@/components/ProjectMedia";
 import Reveal from "@/components/Reveal";
 import SectionShell from "@/components/SectionShell";
+import RepoGridSkeleton from "@/components/RepoGridSkeleton";
 import TagList from "@/components/TagList";
 import TiltCard from "@/components/TiltCard";
+import { profile } from "@/data/profile";
 import { projects, reviTeam } from "@/data/projects";
+import type { Locale } from "@/lib/i18n";
 
 type Dict = Dictionary["projects"];
 type Project = (typeof projects)[number];
@@ -171,7 +178,15 @@ function ProjectCard({
   );
 }
 
-export default function Projects({ dict }: { dict: Dict }) {
+export default function Projects({
+  dict,
+  page,
+  lang,
+}: {
+  dict: Dict;
+  page: Dictionary["projectsPage"];
+  lang: Locale;
+}) {
   const featured = projects.find((project) => project.featured);
   const others = projects.filter((project) => !project.featured);
 
@@ -194,6 +209,31 @@ export default function Projects({ dict }: { dict: Dict }) {
             />
           ))}
         </div>
+      </div>
+
+      {/* Repositórios vindos da API do GitHub, com esqueleto e tela de erro */}
+      <div className="mt-20 sm:mt-24">
+        <Reveal>
+          <h3 className="font-display text-3xl font-bold uppercase sm:text-5xl">
+            {dict.github.title}
+          </h3>
+          <p className="mt-3 mb-8 max-w-xl text-lg leading-8 text-muted">
+            {dict.github.intro}
+          </p>
+        </Reveal>
+        <ApiErrorBoundary dict={page.error} profileUrl={profile.links.github}>
+          <Suspense
+            fallback={<RepoGridSkeleton count={4} label={page.loading} />}
+          >
+            <LatestRepos lang={lang} dict={page} />
+          </Suspense>
+        </ApiErrorBoundary>
+        <Link
+          href={`/${lang}/projetos`}
+          className="mt-8 inline-block rounded-full border border-fg px-7 py-3.5 text-sm font-semibold transition-colors hover:bg-fg hover:text-bg"
+        >
+          {dict.github.seeAll} →
+        </Link>
       </div>
     </SectionShell>
   );
