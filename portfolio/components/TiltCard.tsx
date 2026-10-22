@@ -7,7 +7,7 @@ import {
   useReducedMotion,
   useSpring,
 } from "framer-motion";
-import { useMediaQuery } from "@/lib/useMediaQuery";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 // Card que inclina em 3D seguindo o mouse.
 // Com `label`, uma etiqueta pequena acompanha o cursor dentro do card.

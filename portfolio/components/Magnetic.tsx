@@ -7,7 +7,7 @@ import {
   useReducedMotion,
   useSpring,
 } from "framer-motion";
-import { useMediaQuery } from "@/lib/useMediaQuery";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 // Botão "magnético": o conteúdo é puxado de leve na direção do mouse.
 // Só funciona com mouse de verdade e sem "reduzir movimento".

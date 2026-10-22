@@ -42,13 +42,13 @@ components/            componentes reutilizáveis (botões, animações, cabeça
 components/sections/   uma seção da página por arquivo
 components/dashboard/  peças do painel (login, mensagens, destaques)
 data/                  dados que não mudam de idioma (links, imagens, skills)
-lib/                   utilitários puros e configuração (i18n, site, hooks simples)
+lib/                   utilitários puros e configuração (i18n, site, Supabase)
 actions/               Server Actions ("use server"): validam a entrada e chamam services/
 services/              acesso a APIs externas (GitHub, Supabase, Resend)
 supabase/migrations/   SQL do banco, com as políticas de RLS (toda mudança de tabela vira migração nova)
 tests/unit/            testes de unidade (Vitest + Testing Library), *.test.ts(x)
 tests/e2e/             testes de ponta a ponta (Playwright), *.spec.ts
-hooks/                 hooks React reutilizáveis — criar quando precisar
+hooks/                 hooks React reutilizáveis (`useMediaQuery`)
 proxy.ts               escolhe o idioma e barra o painel sem login (antigo middleware)
 public/                imagens, vídeos e currículo
 ```

@@ -10,7 +10,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { profile } from "@/data/profile";
-import { useMediaQuery } from "@/lib/useMediaQuery";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 const spring = { stiffness: 120, damping: 18, mass: 0.6 };
 
