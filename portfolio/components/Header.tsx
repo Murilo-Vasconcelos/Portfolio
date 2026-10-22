@@ -19,26 +19,30 @@ type HeaderDict = {
   };
 };
 
+// Fora da home, `base` (ex.: "/pt") faz os links das seções voltarem para
+// a home; na home ele fica vazio para a rolagem suave dos #links funcionar.
 export default function Header({
   lang,
   dict,
+  base = "",
 }: {
   lang: Locale;
   dict: HeaderDict;
+  base?: string;
 }) {
   const links = [
-    { href: "#jornada", label: dict.nav.journey },
-    { href: "#experiencia", label: dict.nav.experience },
-    { href: "#projetos", label: dict.nav.projects },
-    { href: "#skills", label: dict.nav.skills },
-    { href: "#certificacoes", label: dict.nav.certifications },
-    { href: "#contato", label: dict.nav.contact },
+    { href: `${base}#jornada`, label: dict.nav.journey },
+    { href: `${base}#experiencia`, label: dict.nav.experience },
+    { href: `${base}#projetos`, label: dict.nav.projects },
+    { href: `${base}#skills`, label: dict.nav.skills },
+    { href: `${base}#certificacoes`, label: dict.nav.certifications },
+    { href: `${base}#contato`, label: dict.nav.contact },
   ];
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between gap-2 bg-bg/70 px-4 py-4 backdrop-blur-md sm:gap-4 sm:px-8">
       <a
-        href="#inicio"
+        href={`${base}#inicio`}
         aria-label={dict.home}
         className="font-display text-xl font-bold tracking-wider"
       >

@@ -192,6 +192,39 @@
         "learned": "Organizar uma página inteira em componentes, trabalhar com dois idiomas e dois temas e testar em vários tamanhos de tela. Também aprendi a pedir com clareza, revisar o que foi gerado e corrigir o que não ficou bom.",
         "imageAlt": "Página inicial deste portfólio, com o nome Murilo Gomes em destaque, botões de currículo e jornada e os números de certificações, projetos e anos de estudo."
       }
+    },
+    "github": {
+      "title": "Direto do GitHub",
+      "intro": "Os repositórios públicos mais recentes, carregados da API do GitHub.",
+      "seeAll": "Ver todos os projetos"
+    }
+  },
+  "projectsPage": {
+    "metaTitle": "Projetos | Murilo Gomes",
+    "metaDescription": "Todos os repositórios públicos de Murilo Gomes, carregados da API do GitHub.",
+    "index": "GitHub",
+    "title": "Projetos",
+    "intro": "Todos os meus repositórios públicos, carregados direto da API do GitHub e atualizados a cada hora.",
+    "back": "Voltar ao início",
+    "backToList": "Todos os projetos",
+    "loading": "Carregando projetos",
+    "updated": "Atualizado em",
+    "language": "Linguagem",
+    "stars": "Estrelas",
+    "topics": "Tópicos",
+    "noDescription": "Este repositório ainda não tem descrição no GitHub.",
+    "repoLink": "Ver no GitHub",
+    "homepageLink": "Abrir o site",
+    "empty": {
+      "title": "Nenhum projeto por aqui ainda",
+      "text": "Não encontrei repositórios públicos no GitHub. Enquanto isso, dá para ver meu perfil direto por lá.",
+      "profile": "Abrir meu GitHub"
+    },
+    "error": {
+      "title": "O GitHub não respondeu",
+      "text": "Não consegui carregar os projetos agora. Pode ser o limite de requisições da API ou uma instabilidade; tente de novo em alguns minutos.",
+      "retry": "Tentar de novo",
+      "profile": "Abrir meu GitHub"
     }
   },
   "skills": {
@@ -288,5 +321,13 @@
     "resume": "Baixar currículo",
     "top": "Voltar ao topo",
     "footer": "Feito com Next.js, Tailwind CSS e Framer Motion."
+  },
+  "notFound": {
+    "metaTitle": "Página não encontrada | Murilo Gomes",
+    "code": "404",
+    "title": "Página não encontrada",
+    "text": "Este endereço não existe ou o projeto mudou de nome. Volte para o início ou veja a lista de projetos.",
+    "home": "Voltar ao início",
+    "projects": "Ver projetos"
   }
 }

@@ -58,13 +58,26 @@ export const projects = [
     id: "portfolio",
     featured: false,
     image: { src: "/images/projects/portfolio.webp", width: 1440, height: 900 },
-    // Coloque aqui o link do repositório deste portfólio no GitHub.
-    repo: null as string | null,
+    repo: "https://github.com/Murilo-Vasconcelos/Portfolio" as string | null,
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "HTML", "CSS"],
   },
 ] as const;
 
 export type ProjectId = (typeof projects)[number]["id"];
+
+type Project = (typeof projects)[number];
+
+// Slug da página do projeto: o nome do repositório em minúsculas, igual ao
+// que o serviço do GitHub gera
+export function projectSlug(project: Project) {
+  return project.repo?.split("/").pop()?.toLowerCase() ?? null;
+}
+
+// Liga um repositório do GitHub (pelo slug da URL) ao projeto cadastrado
+// aqui, para a página de detalhe mostrar também a imagem e os textos.
+export function findProjectBySlug(slug: string) {
+  return projects.find((project) => projectSlug(project) === slug);
+}
 
 // Equipe do REVI. Sem link = é você.
 export const reviTeam: { name: string; url: string | null }[] = [

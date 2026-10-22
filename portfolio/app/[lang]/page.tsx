@@ -27,7 +27,7 @@ export default async function Home({
         <Hero dict={dict.hero} />
         <Journey dict={dict.journey} />
         <Experience dict={dict.experience} />
-        <Projects dict={dict.projects} />
+        <Projects dict={dict.projects} page={dict.projectsPage} lang={lang} />
         <Skills dict={dict.skills} />
         <Certifications dict={dict.certifications} />
         <Contact dict={dict.contact} hero={dict.hero} />

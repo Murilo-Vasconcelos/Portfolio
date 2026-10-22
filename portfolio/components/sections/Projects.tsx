@@ -1,27 +1,20 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Suspense } from "react";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
+import ApiErrorBoundary from "@/components/ApiErrorBoundary";
+import LatestRepos from "@/components/LatestRepos";
+import ProjectMedia from "@/components/ProjectMedia";
 import Reveal from "@/components/Reveal";
 import SectionShell from "@/components/SectionShell";
+import RepoGridSkeleton from "@/components/RepoGridSkeleton";
+import TagList from "@/components/TagList";
 import TiltCard from "@/components/TiltCard";
+import { profile } from "@/data/profile";
 import { projects, reviTeam } from "@/data/projects";
+import type { Locale } from "@/lib/i18n";
 
 type Dict = Dictionary["projects"];
 type Project = (typeof projects)[number];
-
-function TechChips({ tech }: { tech: readonly string[] }) {
-  return (
-    <ul className="flex flex-wrap gap-2">
-      {tech.map((item) => (
-        <li
-          key={item}
-          className="rounded-full border border-line px-3 py-1 text-xs font-semibold"
-        >
-          {item}
-        </li>
-      ))}
-    </ul>
-  );
-}
 
 function Detail({ label, text }: { label: string; text: string }) {
   return (
@@ -30,57 +23,6 @@ function Detail({ label, text }: { label: string; text: string }) {
         {label}
       </p>
       <p className="mt-1.5 leading-7">{text}</p>
-    </div>
-  );
-}
-
-// Imagem do projeto: aparece inteira (sem cortar), na proporção original,
-// dentro de uma moldura com borda fina.
-function ProjectImage({
-  image,
-  alt,
-  video,
-  webm,
-}: {
-  image: { src: string; width: number; height: number };
-  alt: string;
-  video?: string;
-  webm?: boolean;
-}) {
-  return (
-    <div
-      data-no-tilt={video ? "" : undefined}
-      className="relative z-10 overflow-hidden rounded-2xl border border-line bg-[#282a36]"
-    >
-      {video ? (
-        // Vídeo só baixa quando a pessoa clica em play (preload="none"); o
-        // print serve de capa. Sem áudio, então não precisa de legenda.
-        <video
-          controls
-          playsInline
-          preload="none"
-          poster={image.src}
-          aria-label={alt}
-          width={image.width}
-          height={image.height}
-          className="h-auto w-full"
-        >
-          <source src={video} type="video/mp4" />
-          {webm && (
-            <source src={video.replace(".mp4", ".webm")} type="video/webm" />
-          )}
-        </video>
-      ) : (
-        <Image
-          src={image.src}
-          alt={alt}
-          width={image.width}
-          height={image.height}
-          sizes="(min-width: 1024px) 520px, (min-width: 768px) 45vw, 90vw"
-          unoptimized
-          className="h-auto w-full"
-        />
-      )}
     </div>
   );
 }
@@ -139,7 +81,7 @@ function FeaturedProject({ project, dict }: { project: Project; dict: Dict }) {
 
           <div className="flex flex-col gap-6 lg:border-l lg:border-line lg:pl-10">
             {"image" in project && "imageAlt" in text && (
-              <ProjectImage
+              <ProjectMedia
                 image={project.image}
                 alt={text.imageAlt}
                 video={"video" in project ? project.video : undefined}
@@ -176,7 +118,7 @@ function FeaturedProject({ project, dict }: { project: Project; dict: Dict }) {
               </ul>
             </div>
 
-            <TechChips tech={project.tech} />
+            <TagList items={project.tech} />
 
             {project.repo ? (
               <CodeLink href={project.repo} label={dict.codeLabel} />
@@ -210,7 +152,7 @@ function ProjectCard({
         className="flex min-w-0 flex-col gap-5 rounded-3xl border border-line bg-surface p-6 transition-colors hover:border-fg"
       >
         {"image" in project && "imageAlt" in text && (
-          <ProjectImage
+          <ProjectMedia
             image={project.image}
             alt={text.imageAlt}
             video={"video" in project ? project.video : undefined}
@@ -227,7 +169,7 @@ function ProjectCard({
         <p className="leading-7 text-muted">{text.summary}</p>
         <Detail label={dict.partLabel} text={text.part} />
         <Detail label={dict.learnedLabel} text={text.learned} />
-        <TechChips tech={project.tech} />
+        <TagList items={project.tech} />
         {project.repo && (
           <CodeLink href={project.repo} label={dict.codeLabel} />
         )}
@@ -236,7 +178,15 @@ function ProjectCard({
   );
 }
 
-export default function Projects({ dict }: { dict: Dict }) {
+export default function Projects({
+  dict,
+  page,
+  lang,
+}: {
+  dict: Dict;
+  page: Dictionary["projectsPage"];
+  lang: Locale;
+}) {
   const featured = projects.find((project) => project.featured);
   const others = projects.filter((project) => !project.featured);
 
@@ -259,6 +209,31 @@ export default function Projects({ dict }: { dict: Dict }) {
             />
           ))}
         </div>
+      </div>
+
+      {/* Repositórios vindos da API do GitHub, com esqueleto e tela de erro */}
+      <div className="mt-20 sm:mt-24">
+        <Reveal>
+          <h3 className="font-display text-3xl font-bold uppercase sm:text-5xl">
+            {dict.github.title}
+          </h3>
+          <p className="mt-3 mb-8 max-w-xl text-lg leading-8 text-muted">
+            {dict.github.intro}
+          </p>
+        </Reveal>
+        <ApiErrorBoundary dict={page.error} profileUrl={profile.links.github}>
+          <Suspense
+            fallback={<RepoGridSkeleton count={4} label={page.loading} />}
+          >
+            <LatestRepos lang={lang} dict={page} />
+          </Suspense>
+        </ApiErrorBoundary>
+        <Link
+          href={`/${lang}/projetos`}
+          className="mt-8 inline-block rounded-full border border-fg px-7 py-3.5 text-sm font-semibold transition-colors hover:bg-fg hover:text-bg"
+        >
+          {dict.github.seeAll} →
+        </Link>
       </div>
     </SectionShell>
   );

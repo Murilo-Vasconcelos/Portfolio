@@ -61,13 +61,44 @@ visita, e o botão PT | EN no topo troca depois.
 
 ```
 app/[lang]/     página, layout e dicionários de texto
+app/[lang]/projetos/  lista de projetos e página de cada um (/projetos/[slug])
 components/     cabeçalho, botões e animações
 components/sections/  Jornada, Experiência, Projetos, Skills, Certificações, Marcos, Contato
 data/           projetos, equipe, ferramentas, skills (e logos) e dados do perfil
 lib/i18n.ts     lista de idiomas
+services/       acesso à API do GitHub, com cache
 proxy.ts        escolhe o idioma na primeira visita
 public/         currículo em PDF e imagens
 ```
+
+## Projetos pela API do GitHub
+
+A home mostra os repositórios públicos mais recentes, `/pt/projetos` lista
+todos e cada um tem a sua página em `/pt/projetos/<nome-do-repositório>`.
+Projetos cadastrados em `data/projects.ts` ganham também a imagem e os textos
+dos dicionários na página de detalhe.
+
+- **Onde fica:** `services/github.ts`. Uma única chamada
+  (`GET /users/<usuário>/repos`) alimenta todas as páginas e fica em cache por
+  uma hora (`"use cache"` + `cacheLife("hours")`), então o site faz no máximo
+  uma requisição por hora.
+- **Limite de requisições:** sem token a API aceita 60 por hora por IP; com o
+  `GITHUB_TOKEN` (veja `portfolio/.env.example`), 5.000. Com o cache, o site
+  funciona bem até sem token.
+- **Estados:** esqueleto enquanto a lista carrega, aviso de lista vazia, tela
+  de erro com "tentar de novo" quando a API falha e página 404 para endereço
+  ou projeto que não existe.
+- **Se a API falhar no build:** a falha fica em cache por poucos segundos, o
+  que tira esse trecho do HTML estático. O build passa, a página sai com o
+  esqueleto e tenta de novo quando alguém acessa.
+
+**Por que assim:** buscar no servidor com o cache do Next deixa os projetos no
+HTML (bom para SEO e para o Lighthouse) e evita repetir chamadas. A
+alternativa de buscar no navegador (SWR ou TanStack Query) gastaria o limite
+da API a cada visita e mostraria o esqueleto sempre. A API GraphQL do GitHub
+foi descartada porque exige token até para dados públicos, e a REST entrega
+tudo que o site usa (descrição, linguagem, tópicos e data de atualização) sem
+biblioteca extra.
 
 ## Padrões e fluxo de trabalho
 
