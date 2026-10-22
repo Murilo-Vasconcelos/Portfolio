@@ -7,7 +7,7 @@ import {
   useReducedMotion,
   useSpring,
 } from "framer-motion";
-import { useMediaQuery } from "@/lib/useMediaQuery";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 // O círculo cresce sobre qualquer coisa que dê para clicar
 const INTERACTIVE = "a, button, [role='button'], [data-cursor]";
