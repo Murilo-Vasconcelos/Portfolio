@@ -32,7 +32,8 @@ idioma do navegador de quem visita.
 - **Projetos:** REVI em destaque (com a equipe e links do LinkedIn), Global Solution, GoGames e TCC, em cards que inclinam com o mouse
 - **Skills:** 9 tecnologias com logo, em 3 grupos (linguagens, front-end e dados)
 - **Certificações:** 9 certificados em 4 grupos e faixas infinitas de palavras
-- **Contato** com botões magnéticos
+- **Contato** com formulário validado campo a campo, que grava no banco e avisa por e-mail
+- **Painel do dono** (`/pt/login` e `/pt/dashboard`): lê as mensagens, marca como respondidas e escolhe os projetos em destaque da home
 - Troca de tema com um círculo que se espalha a partir do botão (navegadores com View Transitions)
 - Quem usa "reduzir movimento" no sistema vê tudo parado e no lugar
 - Prévia de link (imagem ao compartilhar no LinkedIn/WhatsApp), sitemap, robots e hreflang PT/EN
@@ -66,8 +67,10 @@ visita, e o botão PT | EN no topo troca depois.
 ```
 app/[lang]/     página, layout e dicionários de texto
 app/[lang]/projetos/  lista de projetos e página de cada um (/projetos/[slug])
+app/[lang]/(painel)/  login e dashboard do dono, fora do layout público
 components/     cabeçalho, botões e animações
 components/sections/  Jornada, Experiência, Projetos, Skills, Certificações, Contato
+components/dashboard/ peças do painel (login, lista de mensagens, destaques)
 data/           projetos, equipe, ferramentas, skills (e logos) e dados do perfil
 lib/            utilitários puros: idiomas, validação do contato, clientes do Supabase
 actions/        Server Actions (formulário, login, painel): validam e chamam services/
@@ -75,7 +78,7 @@ services/       acesso a APIs externas: GitHub (com cache), Supabase e Resend
 supabase/       migrações SQL do banco (tabelas e políticas de acesso)
 tests/unit/     testes de unidade (Vitest)
 tests/e2e/      testes de ponta a ponta (Playwright)
-proxy.ts        escolhe o idioma na primeira visita
+proxy.ts        escolhe o idioma na primeira visita e barra o painel sem login
 public/         currículo em PDF e imagens
 ```
 
@@ -137,6 +140,87 @@ O formulário fica na seção Contato da home (`components/ContactForm.tsx`).
 | Zod | Yup, validação manual | Um esquema só para navegador e servidor, com tipos do TypeScript gerados dele | Uma dependência a mais |
 | `useActionState` + Server Action | React Hook Form, Formik | Três campos não pedem biblioteca; o React 19 já dá o estado pendente e o resultado | Recursos prontos de formulários grandes (arrays, máscaras) |
 
+## Painel do dono (dashboard com login)
+
+`/pt/login` leva ao `/pt/dashboard`, que só abre com sessão. O painel usa o
+mesmo visual do site (fontes, cores, tema claro/escuro e PT/EN), sem a intro e
+sem os efeitos de rolagem, porque é uma ferramenta de trabalho.
+
+- **Mensagens:** as mensagens do formulário, das mais novas para as mais
+  antigas, com contagem de pendentes, botão "responder" (abre o e-mail já
+  endereçado) e "marcar como respondida". A marcação muda na hora
+  (`useOptimistic`) e volta sozinha se o servidor recusar.
+- **Projetos em destaque:** até 4 repositórios escolhidos na ordem do clique.
+  A home passa a mostrá-los no lugar dos mais recentes; sem escolha, volta ao
+  comportamento anterior. Salvar invalida o cache da home na hora
+  (`updateTag`).
+- **Login:** e-mail e senha do Supabase Auth. Senha errada mostra "E-mail ou
+  senha incorretos", e o botão fica bloqueado durante a tentativa.
+- **Estados:** esqueleto enquanto cada lista carrega, aviso de lista vazia e
+  erro com "tentar de novo" por seção (uma seção quebrada não derruba a outra).
+
+**Três camadas de proteção:**
+
+1. `proxy.ts` confere a sessão antes de a página existir: sem login,
+   `/dashboard` redireciona para `/login` (status 307); já logado, `/login`
+   leva ao painel. Ele também renova o token do Supabase nos cookies.
+2. A página e cada Server Action conferem o usuário de novo
+   (`services/auth.ts`), porque uma Server Action pode ser chamada direto, sem
+   passar pela página.
+3. O banco só entrega e altera dados para quem está logado (políticas de RLS
+   em `portfolio/supabase/migrations/`). Mesmo com um erro no código, a chave
+   pública não lê mensagens.
+
+**Como ativar:** crie um projeto no Supabase, rode as duas migrações no SQL
+Editor, desligue "Allow new users to sign up" (em Authentication > Sign In /
+Providers), crie o seu usuário em Authentication > Users e coloque as
+variáveis de `portfolio/.env.example` na Vercel. Sem essas variáveis o site
+continua funcionando: o formulário avisa que o envio falhou, o login diz que
+está indisponível e a home mostra os repositórios mais recentes.
+
+**Por que assim:**
+
+| Escolha | Comparado com | Critério | O que se aceitou perder |
+| --- | --- | --- | --- |
+| Supabase Auth (e-mail e senha, cadastro desligado) | Auth.js (NextAuth), Clerk | Já é o banco do formulário: a sessão do login é a mesma que as regras de RLS conferem, sem segundo serviço | Login social e telas prontas; só existe um usuário |
+| `proxy.ts` + checagem no servidor | Só o proxy, só a página | O proxy evita até renderizar o painel; a checagem repetida protege as Server Actions, como recomenda o guia de autenticação do Next | Uma consulta de sessão a mais por requisição do painel |
+| Destaques no banco | Lista fixa em `data/` | Muda sem novo deploy e dá uso real ao painel | Depender do banco para a ordem da home (sem ele, volta aos mais recentes) |
+
+## Desempenho
+
+Lighthouse no modo celular (build de produção, 22/10/2026):
+
+| Página | Desempenho | Acessibilidade | Boas práticas | SEO |
+| --- | --- | --- | --- | --- |
+| Home (`/pt`) | 88 | 100 | 100 | 100 |
+| Projetos (`/pt/projetos`) | 97 | 100 | 100 | 100 |
+| Detalhe (`/pt/projetos/portfolio`) | 96 | 100 | 100 | 100 |
+| Login (`/pt/login`) | 98 | 100 | 100 | 66* |
+
+\* O login tem SEO baixo de propósito: está marcado como `noindex` para não
+aparecer no Google.
+
+O que mantém esses números:
+
+- **HTML pronto com partes dinâmicas em streaming:** com `cacheComponents`, o
+  esqueleto de cada página sai estático e só a parte que depende de dados
+  (lista do GitHub, mensagens) chega depois, dentro de um `<Suspense>`.
+- **Cache da API do GitHub** por uma hora e dos destaques por dias (com
+  invalidação na hora ao salvar), então a home não espera rede.
+- **Imagens pelo `next/image`:** tamanho certo para cada tela (`sizes`),
+  formatos modernos e só a foto da abertura com prioridade. A foto original
+  (1600x2000) saía sem otimização e segurava o LCP; otimizada, a nota da home
+  subiu de 84 para 88.
+- **Vídeos sob demanda:** `preload="none"` com imagem de capa; os 10 MB do
+  vídeo do REVI só baixam quando alguém aperta play.
+- **Painel separado por rota:** o código do dashboard (formulários, listas)
+  fica no grupo `(painel)` e não entra no JavaScript da home.
+- **Fontes pelo `next/font`:** baixadas no build e servidas pelo próprio site,
+  sem pedir ao Google na hora e sem texto pulando (CLS 0,002 na home).
+
+O que ainda pesa na home é o JavaScript das animações (Framer Motion e Lenis),
+custo aceito na tabela de decisões.
+
 ## Testes e CI
 
 ```bash
@@ -149,13 +233,20 @@ npm run test:e2e    # Playwright: faz o build, sobe o site e testa no Chromium
 - **Unidade (Vitest + Testing Library),** em `tests/unit/`: o serviço do
   GitHub com a API simulada (conversão dos dados, filtro de forks e
   arquivados, limite de requisições, queda de rede), a escolha de idioma do
-  `proxy.ts`, a formatação de datas, o `RepoCard` e uma checagem de que
-  `pt.json` e `en.json` têm as mesmas chaves e nenhum texto vazio.
+  `proxy.ts` (inclusive o bloqueio do painel sem sessão), a formatação de
+  datas, o `RepoCard`, o `Button`, a validação do formulário de contato (cada
+  regra e cada mensagem de erro, o botão bloqueado durante o envio), o envio
+  de e-mail, o login e as ações do painel (recusam sem login e validam os
+  dados), e uma checagem de que `pt.json` e `en.json` têm as mesmas chaves e
+  nenhum texto vazio.
 - **Ponta a ponta (Playwright),** em `tests/e2e/`, no build de produção, em
   tela de computador e de celular: redirecionamento pelo idioma do navegador,
   troca de idioma mantendo a página, tema que continua depois de recarregar,
-  página 404 (com status 404) e a lista e o detalhe dos projetos vindos da
-  API. Se a API do GitHub estiver fora, os testes de lista conferem a tela de
+  página 404 (com status 404), a lista e o detalhe dos projetos vindos da
+  API, as mensagens de erro do formulário de contato, e o painel: sem login,
+  `/dashboard` redireciona para `/login` (status 307), e o login valida os
+  campos e recusa senha errada. Com `E2E_OWNER_EMAIL` e `E2E_OWNER_PASSWORD`
+  definidos, um teste a mais entra no painel de verdade e sai. Se a API do GitHub estiver fora, os testes de lista conferem a tela de
   erro com "tentar de novo", e os de detalhe são pulados com o motivo.
 - **CI (GitHub Actions),** em `.github/workflows/ci.yml`, a cada Pull Request
   e push na `main`, em dois jobs paralelos: (1) lint, typecheck,
@@ -177,7 +268,8 @@ públicos; a Vercel continua cuidando só do deploy.
 ## Decisões de stack
 
 Cada escolha com o que foi comparado, o critério e o que se aceitou perder. As
-decisões de áreas específicas (GitHub, testes, hooks) estão nas seções abaixo.
+decisões de áreas específicas (GitHub, contato, painel, testes, hooks) estão
+nas seções próprias.
 
 | Escolha | Comparado com | Critério | O que se aceitou perder |
 | --- | --- | --- | --- |

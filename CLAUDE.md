@@ -37,8 +37,10 @@ mais o `test:e2e` em cada PR). Se algo falhar, conte o que falhou; não esconda.
 ```
 app/[lang]/            rotas por idioma (pt | en), layout e dicionários
 app/[lang]/dictionaries/pt.json, en.json   todo texto visível do site
+app/[lang]/(painel)/   login e dashboard do dono (rotas protegidas)
 components/            componentes reutilizáveis (botões, animações, cabeçalho)
 components/sections/   uma seção da página por arquivo
+components/dashboard/  peças do painel (login, mensagens, destaques)
 data/                  dados que não mudam de idioma (links, imagens, skills)
 lib/                   utilitários puros e configuração (i18n, site, hooks simples)
 actions/               Server Actions ("use server"): validam a entrada e chamam services/
@@ -47,7 +49,7 @@ supabase/migrations/   SQL do banco, com as políticas de RLS (toda mudança de 
 tests/unit/            testes de unidade (Vitest + Testing Library), *.test.ts(x)
 tests/e2e/             testes de ponta a ponta (Playwright), *.spec.ts
 hooks/                 hooks React reutilizáveis — criar quando precisar
-proxy.ts               escolhe o idioma na primeira visita (antigo middleware)
+proxy.ts               escolhe o idioma e barra o painel sem login (antigo middleware)
 public/                imagens, vídeos e currículo
 ```
 
@@ -60,6 +62,9 @@ Regras:
 - Chamadas a APIs externas ficam em `services/`, nunca direto no componente.
   Mutações entram por Server Actions em `actions/`, que validam de novo no
   servidor (Zod) e conferem o login antes de mexer em dados do painel.
+  Página ou ação nova do painel chama `getCurrentUser`/`getAuthenticatedClient`
+  (`services/auth.ts`); o `proxy.ts` sozinho não basta, porque uma Server
+  Action pode ser chamada sem passar pela página.
   Use o cache do Next (`"use cache"`, `cacheLife`) para não repetir requisições.
 - Nenhum texto visível fica no JSX: tudo vai para `pt.json` **e** `en.json`. O
   tipo `Dictionary` vem do `pt.json`, então o TypeScript acusa chave faltando.
