@@ -62,9 +62,10 @@ export default function Portrait({ alt }: Props) {
           alt={alt}
           fill
           priority
-          // O arquivo já está em alta resolução e qualidade; servir direto evita
-          // uma segunda compressão que tiraria nitidez.
-          unoptimized
+          // O original tem 1600x2000 (394 KB) e aparece com ~460px de largura.
+          // O next/image entrega o tamanho certo para cada tela; qualidade 90
+          // mantém a nitidez do rosto. Era a maior perda do Lighthouse na home.
+          quality={90}
           sizes="(min-width: 1280px) 460px, (min-width: 640px) 400px, 300px"
           className="object-cover object-top"
         />
