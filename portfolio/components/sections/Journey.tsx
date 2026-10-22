@@ -28,15 +28,15 @@ function TimelineItem({
     <li
       ref={ref}
       className={`relative pb-14 pl-9 last:pb-0 md:w-1/2 md:pb-16 ${
-        right ? "md:ml-auto md:pl-14" : "md:pl-0 md:pr-14 md:text-right"
+        right ? "md:ml-auto md:pl-14" : "md:pr-14 md:pl-0 md:text-right"
       }`}
     >
       {/* Bolinha na linha */}
       <span
         aria-hidden
-        className={`absolute left-0 top-1.5 flex h-[15px] w-[15px] items-center justify-center rounded-full border-2 border-fg transition-colors duration-500 ${
+        className={`absolute top-1.5 left-0 flex h-[15px] w-[15px] items-center justify-center rounded-full border-2 border-fg transition-colors duration-500 ${
           active || isLast ? "bg-fg" : "bg-bg"
-        } ${right ? "md:left-0 md:-translate-x-1/2" : "md:left-auto md:right-0 md:translate-x-1/2"}`}
+        } ${right ? "md:left-0 md:-translate-x-1/2" : "md:right-0 md:left-auto md:translate-x-1/2"}`}
       >
         {isLast && (
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-fg opacity-40" />
@@ -44,7 +44,7 @@ function TimelineItem({
       </span>
 
       <Reveal y={24}>
-        <p className="font-display text-sm uppercase tracking-[0.25em] text-muted">
+        <p className="font-display text-sm tracking-[0.25em] text-muted uppercase">
           {item.when}
           {isLast && (
             <span className="ml-3 rounded-full border border-line px-2 py-0.5 text-[0.65rem] tracking-[0.2em]">
@@ -81,12 +81,12 @@ export default function Journey({ dict }: { dict: Dictionary["journey"] }) {
     <section id="jornada" className="border-t border-line">
       <div className="mx-auto max-w-6xl px-5 py-24 sm:px-8 sm:py-32">
         <Reveal>
-          <p className="font-display text-sm uppercase tracking-[0.3em] text-muted">
+          <p className="font-display text-sm tracking-[0.3em] text-muted uppercase">
             {dict.index} /
           </p>
         </Reveal>
         <Reveal delay={0.08}>
-          <h2 className="mt-3 font-display text-[clamp(2rem,9vw,6.5rem)] [overflow-wrap:anywhere] font-bold uppercase leading-none">
+          <h2 className="mt-3 font-display text-[clamp(2rem,9vw,6.5rem)] leading-none font-bold [overflow-wrap:anywhere] uppercase">
             {dict.title}
           </h2>
         </Reveal>
@@ -94,20 +94,20 @@ export default function Journey({ dict }: { dict: Dictionary["journey"] }) {
         <ScrollLitText
           text={dict.statement}
           highlight={dict.statementHighlight}
-          className="mt-12 max-w-4xl font-display text-3xl font-bold leading-tight sm:mt-16 sm:text-5xl"
+          className="mt-12 max-w-4xl font-display text-3xl leading-tight font-bold sm:mt-16 sm:text-5xl"
         />
 
         {/* Linha do tempo: a linha se desenha conforme a rolagem */}
         <ol ref={listRef} className="relative mt-20 sm:mt-28">
           <span
             aria-hidden
-            className="absolute bottom-0 left-[6.5px] top-0 w-[2px] bg-line md:left-1/2 md:-translate-x-1/2"
+            className="absolute top-0 bottom-0 left-[6.5px] w-[2px] bg-line md:left-1/2 md:-translate-x-1/2"
           />
           <motion.span
             aria-hidden
             data-reveal
             style={{ scaleY, transformOrigin: "top" }}
-            className="absolute bottom-0 left-[6.5px] top-0 w-[2px] bg-fg md:left-1/2 md:-translate-x-1/2"
+            className="absolute top-0 bottom-0 left-[6.5px] w-[2px] bg-fg md:left-1/2 md:-translate-x-1/2"
           />
           {dict.items.map((item, index) => (
             <TimelineItem

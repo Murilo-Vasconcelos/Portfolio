@@ -14,15 +14,15 @@ export default function Experience({
         {/* Cargo e empresa, como uma linha de tabela */}
         <Reveal>
           <div className="border-t border-fg pt-5">
-            <p className="font-display text-sm uppercase tracking-[0.25em] text-muted">
+            <p className="font-display text-sm tracking-[0.25em] text-muted uppercase">
               {dict.period}
             </p>
-            <h3 className="mt-3 font-display text-4xl font-bold uppercase leading-none sm:text-5xl">
+            <h3 className="mt-3 font-display text-4xl leading-none font-bold uppercase sm:text-5xl">
               {dict.company}
             </h3>
             <p className="mt-3 text-lg text-muted">{dict.role}</p>
 
-            <p className="mt-8 font-display text-xs uppercase tracking-[0.25em] text-muted">
+            <p className="mt-8 font-display text-xs tracking-[0.25em] text-muted uppercase">
               {dict.toolsLabel}
             </p>
             <ul className="mt-3 flex flex-wrap gap-2">
@@ -42,10 +42,10 @@ export default function Experience({
           {/* Destaque: TV do RH */}
           <Reveal delay={0.1}>
             <article className="rounded-3xl border border-fg bg-surface p-7 sm:p-10">
-              <p className="inline-block rounded-full bg-fg px-3 py-1 font-display text-xs uppercase tracking-[0.25em] text-bg">
+              <p className="inline-block rounded-full bg-fg px-3 py-1 font-display text-xs tracking-[0.25em] text-bg uppercase">
                 {dict.highlightLabel}
               </p>
-              <h3 className="mt-5 font-display text-4xl font-bold uppercase leading-none sm:text-6xl">
+              <h3 className="mt-5 font-display text-4xl leading-none font-bold uppercase sm:text-6xl">
                 {dict.highlightTitle}
               </h3>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-muted">

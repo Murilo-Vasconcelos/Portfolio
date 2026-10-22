@@ -23,14 +23,14 @@ export default function Contact({
 
   return (
     <section id="contato" className="border-t border-line">
-      <div className="mx-auto max-w-6xl px-5 pb-10 pt-24 sm:px-8 sm:pt-32">
+      <div className="mx-auto max-w-6xl px-5 pt-24 pb-10 sm:px-8 sm:pt-32">
         <Reveal>
-          <p className="font-display text-sm uppercase tracking-[0.3em] text-muted">
+          <p className="font-display text-sm tracking-[0.3em] text-muted uppercase">
             {dict.index} / {dict.title}
           </p>
         </Reveal>
         <Reveal delay={0.08}>
-          <h2 className="mt-3 font-display text-[clamp(2.25rem,11.5vw,9rem)] [overflow-wrap:anywhere] font-bold uppercase leading-[0.9]">
+          <h2 className="mt-3 font-display text-[clamp(2.25rem,11.5vw,9rem)] leading-[0.9] font-bold [overflow-wrap:anywhere] uppercase">
             {dict.heading}
           </h2>
         </Reveal>

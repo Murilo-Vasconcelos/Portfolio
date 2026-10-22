@@ -28,8 +28,7 @@ export const projects = [
     video: "/videos/global-solution.mp4",
     videoWebm: true,
     repo: "https://github.com/Murilo-Vasconcelos/GS-Edge-Computing" as
-      | string
-      | null,
+      string | null,
     tech: ["Arduino Uno", "C++", "LCD I2C", "Wokwi"],
   },
   {
@@ -37,8 +36,7 @@ export const projects = [
     featured: false,
     image: { src: "/images/projects/gogames.webp", width: 1611, height: 1440 },
     repo: "https://github.com/Murilo-Vasconcelos/Projeto-GoGames" as
-      | string
-      | null,
+      string | null,
     tech: ["Python", "Clean Code"],
   },
   {
@@ -46,7 +44,15 @@ export const projects = [
     featured: false,
     image: { src: "/images/projects/tcc.webp", width: 1923, height: 1533 },
     repo: "https://github.com/Murilo-Vasconcelos/Projeto-TCC" as string | null,
-    tech: ["Python", "OpenCV", "face-recognition", "Pillow", "NumPy", "SQL", "MySQL"],
+    tech: [
+      "Python",
+      "OpenCV",
+      "face-recognition",
+      "Pillow",
+      "NumPy",
+      "SQL",
+      "MySQL",
+    ],
   },
   {
     id: "portfolio",

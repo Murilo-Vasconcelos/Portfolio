@@ -1,0 +1,6 @@
+# O git passa o caminho da mensagem relativo à raiz; o commitlint roda em portfolio/.
+case "$1" in
+  /*) msg_file="$1" ;;
+  *) msg_file="$PWD/$1" ;;
+esac
+cd portfolio && npx --no -- commitlint --edit "$msg_file"

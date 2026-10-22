@@ -98,20 +98,20 @@ export default function Intro({ name, label, skipLabel }: Props) {
           className="intro-overlay fixed inset-0 z-[200] flex flex-col justify-between bg-[#121212] p-5 text-[#f5f5f5] sm:p-8"
         >
           <div className="flex items-start justify-between">
-            <span className="font-display text-sm uppercase tracking-[0.3em]">
+            <span className="font-display text-sm tracking-[0.3em] uppercase">
               {name}
             </span>
             <button
               type="button"
               onClick={finish}
-              className="font-display text-sm uppercase tracking-[0.3em] text-[#a6a6a6] transition-colors hover:text-[#f5f5f5]"
+              className="font-display text-sm tracking-[0.3em] text-[#a6a6a6] uppercase transition-colors hover:text-[#f5f5f5]"
             >
               {skipLabel}
             </button>
           </div>
 
           <div>
-            <div className="flex items-end gap-2 font-display font-bold leading-none">
+            <div className="flex items-end gap-2 font-display leading-none font-bold">
               <motion.span className="text-[28vw] sm:text-[20vw]">
                 {counter}
               </motion.span>

@@ -66,7 +66,7 @@ export default function CustomCursor() {
         aria-hidden
         style={{ x, y }}
         animate={{ opacity: visible ? 1 : 0 }}
-        className="pointer-events-none fixed left-0 top-0 z-[300] -ml-[3px] -mt-[3px] h-[6px] w-[6px] rounded-full bg-white mix-blend-difference"
+        className="pointer-events-none fixed top-0 left-0 z-[300] -mt-[3px] -ml-[3px] h-[6px] w-[6px] rounded-full bg-white mix-blend-difference"
       />
       {/* Círculo: vem logo atrás, com um pouco de atraso */}
       <motion.div
@@ -77,7 +77,7 @@ export default function CustomCursor() {
           scale: pressed ? 0.8 : hovering ? 1.9 : 1,
         }}
         transition={{ duration: 0.2 }}
-        className="pointer-events-none fixed left-0 top-0 z-[300] -ml-[18px] -mt-[18px] h-9 w-9 rounded-full border border-white mix-blend-difference"
+        className="pointer-events-none fixed top-0 left-0 z-[300] -mt-[18px] -ml-[18px] h-9 w-9 rounded-full border border-white mix-blend-difference"
       />
     </>
   );

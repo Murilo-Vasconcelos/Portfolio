@@ -49,12 +49,7 @@
     "index": "01",
     "title": "Jornada",
     "statement": "Eu não nasci sabendo programar. Fui aprendendo um curso, um projeto e um erro de cada vez, e não parei mais.",
-    "statementHighlight": [
-      "curso",
-      "projeto",
-      "erro",
-      "parei"
-    ],
+    "statementHighlight": ["curso", "projeto", "erro", "parei"],
     "nowLabel": "Próximo passo",
     "items": [
       {

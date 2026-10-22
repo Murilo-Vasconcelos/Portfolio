@@ -20,12 +20,12 @@ export default function SectionShell({
       <div className="mx-auto max-w-6xl px-5 py-24 sm:px-8 sm:py-32">
         <div className="mb-12 sm:mb-16">
           <Reveal>
-            <p className="font-display text-sm uppercase tracking-[0.3em] text-muted">
+            <p className="font-display text-sm tracking-[0.3em] text-muted uppercase">
               {index} /
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h2 className="mt-3 font-display text-[clamp(2rem,9vw,6.5rem)] [overflow-wrap:anywhere] font-bold uppercase leading-none">
+            <h2 className="mt-3 font-display text-[clamp(2rem,9vw,6.5rem)] leading-none font-bold [overflow-wrap:anywhere] uppercase">
               {title}
             </h2>
           </Reveal>

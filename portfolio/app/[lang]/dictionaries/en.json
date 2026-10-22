@@ -49,12 +49,7 @@
     "index": "01",
     "title": "Journey",
     "statement": "I wasn't born knowing how to code. I learned one course, one project and one mistake at a time, and I haven't stopped since.",
-    "statementHighlight": [
-      "course",
-      "project",
-      "mistake",
-      "stopped"
-    ],
+    "statementHighlight": ["course", "project", "mistake", "stopped"],
     "nowLabel": "Up next",
     "items": [
       {

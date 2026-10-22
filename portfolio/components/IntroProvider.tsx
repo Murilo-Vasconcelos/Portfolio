@@ -24,7 +24,9 @@ export function IntroProvider({ children }: { children: React.ReactNode }) {
   const markReady = useCallback(() => setReady(true), []);
   const value = useMemo(() => ({ ready, markReady }), [ready, markReady]);
 
-  return <IntroContext.Provider value={value}>{children}</IntroContext.Provider>;
+  return (
+    <IntroContext.Provider value={value}>{children}</IntroContext.Provider>
+  );
 }
 
 export function useIntro() {

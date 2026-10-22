@@ -89,7 +89,6 @@ git push -u origin main
 5. Se comprar um domínio próprio, ligue na Vercel (Settings → Domains) e crie a
    variável `NEXT_PUBLIC_SITE_URL` com o endereço completo (ex.: `https://murilogomes.dev`).
 
-
 ## Créditos
 
 Logos das skills: [Simple Icons](https://simpleicons.org) (CC0) e [Devicon](https://devicon.dev) (MIT). As marcas pertencem aos seus donos.
