@@ -4,7 +4,7 @@ Estudante de Engenharia de Software. Portfólio que conta a trajetória
 profissional e acadêmica por rolagem, com tema claro/escuro, PT/EN e animações,
 projetos carregados da API do GitHub, formulário de contato e um painel do dono.
 
-**Site publicado:** https://portfolio-taupe-nu-izjvzchmfp.vercel.app
+**Site publicado:** https://mvg-portfolio.vercel.app
 (a Vercel publica de novo a cada push na `main`).
 
 **Stack:** Next.js (App Router) · TypeScript · Tailwind CSS · Framer Motion · Lenis · next-themes
@@ -73,6 +73,7 @@ components/sections/  Jornada, Experiência, Projetos, Skills, Certificações, 
 components/dashboard/ peças do painel (login, lista de mensagens, destaques)
 data/           projetos, equipe, ferramentas, skills (e logos) e dados do perfil
 lib/            utilitários puros: idiomas, validação do contato, clientes do Supabase
+hooks/          hooks React reutilizáveis (useMediaQuery: mouse ou toque)
 actions/        Server Actions (formulário, login, painel): validam e chamam services/
 services/       acesso a APIs externas: GitHub (com cache), Supabase e Resend
 supabase/       migrações SQL do banco (tabelas e políticas de acesso)
