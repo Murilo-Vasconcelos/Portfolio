@@ -23,11 +23,14 @@ npm run dev           # servidor local em http://localhost:3000
 npm run lint          # ESLint (regras do Next + TypeScript)
 npm run typecheck     # tsc --noEmit
 npm run format        # Prettier em tudo (format:check só confere)
+npm test              # Vitest: testes de unidade em tests/unit/
+npm run test:e2e      # Playwright: build + testes de ponta a ponta em tests/e2e/
 npm run build         # build de produção
 ```
 
-Antes de dizer que uma tarefa terminou, rode `lint`, `typecheck` e `build` e
-confira que passam. Se algo falhar, conte o que falhou; não esconda.
+Antes de dizer que uma tarefa terminou, rode `lint`, `typecheck`, `test` e
+`build` e confira que passam (o CI do GitHub Actions roda os mesmos passos e
+mais o `test:e2e` em cada PR). Se algo falhar, conte o que falhou; não esconda.
 
 ## Arquitetura e pastas (dentro de `portfolio/`)
 
@@ -39,6 +42,8 @@ components/sections/   uma seção da página por arquivo
 data/                  dados que não mudam de idioma (links, imagens, skills)
 lib/                   utilitários puros e configuração (i18n, site, hooks simples)
 services/              acesso a APIs externas (GitHub, Supabase, e-mail) — criar quando precisar
+tests/unit/            testes de unidade (Vitest + Testing Library), *.test.ts(x)
+tests/e2e/             testes de ponta a ponta (Playwright), *.spec.ts
 hooks/                 hooks React reutilizáveis — criar quando precisar
 proxy.ts               escolhe o idioma na primeira visita (antigo middleware)
 public/                imagens, vídeos e currículo
@@ -56,6 +61,9 @@ Regras:
   tipo `Dictionary` vem do `pt.json`, então o TypeScript acusa chave faltando.
 - Imagens com `next/image`; mídia pesada carregada sob demanda.
 - Respeite `prefers-reduced-motion` (veja `globals.css`) em toda animação nova.
+- Código novo em `lib/`, `services/` ou componente com lógica ganha teste em
+  `tests/unit/`; fluxo novo de página (formulário, login) ganha teste em
+  `tests/e2e/`. Componentes `async` do servidor só dá para testar no Playwright.
 - Segredos só em variáveis de ambiente. Nunca leia nem commite `.env*`;
   documente toda variável nova em `portfolio/.env.example`.
 
@@ -103,8 +111,8 @@ O commitlint (hook `commit-msg`) rejeita mensagens fora do padrão. O hook
   kebab-case: `feature/github-api`, `fix/foto-hero`. (`claude/*` é reservado
   para sessões do Claude Code na nuvem.)
 - Termine com um Pull Request para a `main` usando o template de
-  `.github/pull_request_template.md`. Merge só com lint, typecheck e build
-  passando e com a prévia da Vercel conferida.
+  `.github/pull_request_template.md`. Merge só com o CI verde (lint, typecheck,
+  testes e build) e com a prévia da Vercel conferida.
 - Prefira *squash merge* quando a branch tiver commits de ajuste.
 
 ## Como o agente deve trabalhar
