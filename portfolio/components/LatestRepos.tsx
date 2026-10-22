@@ -3,9 +3,11 @@ import EmptyState from "@/components/EmptyState";
 import RepoCard from "@/components/RepoCard";
 import { profile } from "@/data/profile";
 import type { Locale } from "@/lib/i18n";
+import { getFeaturedSlugs } from "@/services/featured";
 import { getRepos } from "@/services/github";
 
-// Os repositórios atualizados mais recentemente, para a seção Projetos da home
+// Repositórios da seção Projetos da home: os escolhidos no painel, na ordem
+// escolhida; sem escolha, os atualizados mais recentemente
 export default async function LatestRepos({
   lang,
   dict,
@@ -15,7 +17,11 @@ export default async function LatestRepos({
   dict: Dictionary["projectsPage"];
   limit?: number;
 }) {
-  const repos = (await getRepos()).slice(0, limit);
+  const [all, featured] = await Promise.all([getRepos(), getFeaturedSlugs()]);
+  const chosen = featured
+    .map((slug) => all.find((repo) => repo.slug === slug))
+    .filter((repo) => repo !== undefined);
+  const repos = (chosen.length > 0 ? chosen : all).slice(0, limit);
 
   if (repos.length === 0) {
     return (
