@@ -1,0 +1,2 @@
+# Os hooks rodam a partir da raiz do repositório; o app fica em portfolio/.
+cd portfolio && npx lint-staged

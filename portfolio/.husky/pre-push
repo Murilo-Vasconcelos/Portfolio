@@ -1,0 +1,18 @@
+# Todo trabalho entra por branch + Pull Request: bloqueia push direto na main
+# e branches fora do padrão de nomes (veja CLAUDE.md, seção "Branches").
+while read -r _local_ref _local_sha remote_ref _remote_sha; do
+  branch="${remote_ref#refs/heads/}"
+  case "$branch" in
+    main)
+      echo "Push direto na main bloqueado. Crie uma branch feature/<assunto> e abra um PR."
+      exit 1
+      ;;
+    feature/*|fix/*|docs/*|chore/*|refactor/*|test/*|style/*|perf/*|ci/*|claude/*) ;;
+    refs/tags/*) ;;
+    *)
+      echo "Nome de branch fora do padrão: $branch"
+      echo "Use feature/<assunto>, fix/<assunto>, docs/<assunto>, chore/<assunto> etc."
+      exit 1
+      ;;
+  esac
+done
