@@ -28,13 +28,17 @@ test.describe("formulário de contato", () => {
     page,
   }) => {
     const email = page.getByLabel("E-mail", { exact: true });
-    await email.fill("ana@exemplo");
-    await email.blur();
-    await expect(
-      page.getByText(
-        "E-mail inválido. Confira se está no formato nome@dominio.com.",
-      ),
-    ).toBeVisible();
+    // Repete até a página terminar de carregar o JavaScript (hidratação):
+    // antes disso o campo existe, mas ainda não reage ao blur
+    await expect(async () => {
+      await email.fill("ana@exemplo");
+      await email.blur();
+      await expect(
+        page.getByText(
+          "E-mail inválido. Confira se está no formato nome@dominio.com.",
+        ),
+      ).toBeVisible({ timeout: 1000 });
+    }).toPass();
     await expect(email).toHaveAttribute("aria-invalid", "true");
 
     const message = page.getByLabel("Mensagem");
