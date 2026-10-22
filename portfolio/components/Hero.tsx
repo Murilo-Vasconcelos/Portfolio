@@ -41,7 +41,7 @@ export default function Hero({ dict }: { dict: Dictionary["hero"] }) {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-screen items-center overflow-hidden px-5 pb-28 pt-28 sm:px-8"
+      className="relative flex min-h-screen items-center overflow-hidden px-5 pt-28 pb-28 sm:px-8"
     >
       <HeroRings />
 
@@ -57,7 +57,7 @@ export default function Hero({ dict }: { dict: Dictionary["hero"] }) {
           data-reveal
           className="flex items-center justify-center gap-6"
         >
-          <p className="hidden rotate-180 border-r border-line pr-4 font-display text-sm uppercase tracking-[0.4em] text-muted [writing-mode:vertical-rl] lg:block">
+          <p className="hidden rotate-180 border-r border-line pr-4 font-display text-sm tracking-[0.4em] text-muted uppercase [writing-mode:vertical-rl] lg:block">
             {dict.role}
           </p>
           <Portrait alt={dict.photoAlt} />
@@ -68,14 +68,14 @@ export default function Hero({ dict }: { dict: Dictionary["hero"] }) {
           <motion.p
             variants={fadeUp}
             data-reveal
-            className="mb-4 font-display text-sm uppercase tracking-[0.3em] text-muted lg:hidden"
+            className="mb-4 font-display text-sm tracking-[0.3em] text-muted uppercase lg:hidden"
           >
             {dict.role}
           </motion.p>
 
           <h1
             aria-label={fullName}
-            className="font-display text-[clamp(3.5rem,13vw,9.5rem)] font-bold uppercase leading-[0.9]"
+            className="font-display text-[clamp(3.5rem,13vw,9.5rem)] leading-[0.9] font-bold uppercase"
           >
             <span className="block">
               <SplitText text={dict.firstName} />

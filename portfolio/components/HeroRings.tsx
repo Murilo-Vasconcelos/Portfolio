@@ -10,7 +10,7 @@ export default function HeroRings() {
         fill="none"
         stroke="currentColor"
         strokeWidth="1"
-        className="ring-spin absolute -right-48 -top-48 h-[620px] w-[620px] text-fg opacity-[0.14] sm:h-[860px] sm:w-[860px]"
+        className="ring-spin absolute -top-48 -right-48 h-[620px] w-[620px] text-fg opacity-[0.14] sm:h-[860px] sm:w-[860px]"
       >
         <circle cx="400" cy="400" r="390" />
         <circle cx="400" cy="400" r="300" strokeDasharray="4 10" />

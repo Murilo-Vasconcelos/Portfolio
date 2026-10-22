@@ -75,7 +75,7 @@ export default function ThemeToggle({ labels }: { labels: Labels }) {
     <button
       onClick={toggle}
       aria-label={labels.aria}
-      className="whitespace-nowrap rounded-full border border-line px-3 py-2 text-xs font-semibold sm:px-4 sm:text-sm transition-colors hover:bg-fg hover:text-bg"
+      className="rounded-full border border-line px-3 py-2 text-xs font-semibold whitespace-nowrap transition-colors hover:bg-fg hover:text-bg sm:px-4 sm:text-sm"
     >
       {/* Em telas muito estreitas (< 360px) o botão vira só um ícone */}
       <span className="max-[359px]:hidden">

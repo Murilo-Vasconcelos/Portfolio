@@ -26,7 +26,10 @@ export default function SplitText({
   className?: string;
 }) {
   return (
-    <motion.span variants={container} className={`inline-block ${className ?? ""}`}>
+    <motion.span
+      variants={container}
+      className={`inline-block ${className ?? ""}`}
+    >
       {Array.from(text).map((char, index) => (
         <span
           key={index}

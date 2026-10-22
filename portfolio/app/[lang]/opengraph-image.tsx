@@ -20,56 +20,54 @@ export default async function Image({
   const dict = await getDictionary(hasLocale(lang) ? lang : "pt");
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        background: "#121212",
+        color: "#f5f5f5",
+        padding: 72,
+      }}
+    >
       <div
         style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          background: "#121212",
-          color: "#f5f5f5",
-          padding: 72,
+          fontSize: 28,
+          letterSpacing: 8,
+          textTransform: "uppercase",
+          color: "#a6a6a6",
         }}
       >
+        {dict.hero.role}
+      </div>
+      <div style={{ display: "flex", flexDirection: "column" }}>
         <div
           style={{
-            fontSize: 28,
-            letterSpacing: 8,
+            fontSize: 190,
+            fontWeight: 800,
+            lineHeight: 0.95,
             textTransform: "uppercase",
-            color: "#a6a6a6",
           }}
         >
-          {dict.hero.role}
+          {dict.hero.firstName}
         </div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div
-            style={{
-              fontSize: 190,
-              fontWeight: 800,
-              lineHeight: 0.95,
-              textTransform: "uppercase",
-            }}
-          >
-            {dict.hero.firstName}
-          </div>
-          <div
-            style={{
-              fontSize: 190,
-              fontWeight: 800,
-              lineHeight: 0.95,
-              textTransform: "uppercase",
-              color: "transparent",
-              WebkitTextStroke: "3px #f5f5f5",
-            }}
-          >
-            {dict.hero.lastName}
-          </div>
+        <div
+          style={{
+            fontSize: 190,
+            fontWeight: 800,
+            lineHeight: 0.95,
+            textTransform: "uppercase",
+            color: "transparent",
+            WebkitTextStroke: "3px #f5f5f5",
+          }}
+        >
+          {dict.hero.lastName}
         </div>
-        <div style={{ fontSize: 28, color: "#a6a6a6" }}>{dict.hero.badge}</div>
       </div>
-    ),
+      <div style={{ fontSize: 28, color: "#a6a6a6" }}>{dict.hero.badge}</div>
+    </div>,
     size,
   );
 }

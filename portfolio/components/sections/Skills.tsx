@@ -16,7 +16,7 @@ export default function Skills({ dict }: { dict: Dictionary["skills"] }) {
         {skillGroups.map((group, groupIndex) => (
           <div key={group.id}>
             <Reveal delay={0.05 * groupIndex}>
-              <h3 className="mb-5 flex items-center gap-4 font-display text-sm uppercase tracking-[0.25em] text-muted">
+              <h3 className="mb-5 flex items-center gap-4 font-display text-sm tracking-[0.25em] text-muted uppercase">
                 {dict.groups[group.id]}
                 <span aria-hidden className="h-px flex-1 bg-line" />
               </h3>

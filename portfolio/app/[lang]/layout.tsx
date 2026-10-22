@@ -88,7 +88,7 @@ export default async function RootLayout({ children, params }: Props) {
 
         <a
           href="#conteudo"
-          className="fixed left-4 top-4 z-[400] -translate-y-20 rounded-full bg-fg px-4 py-2 text-sm font-semibold text-bg focus:translate-y-0"
+          className="fixed top-4 left-4 z-[400] -translate-y-20 rounded-full bg-fg px-4 py-2 text-sm font-semibold text-bg focus:translate-y-0"
         >
           {dict.header.skipToContent}
         </a>

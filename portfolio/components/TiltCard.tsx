@@ -80,7 +80,7 @@ export default function TiltCard({
             scale: hovering && !overMedia ? 1 : 0.6,
           }}
           transition={{ duration: 0.2 }}
-          className="pointer-events-none absolute left-0 top-0 z-20 translate-x-5 translate-y-5 whitespace-nowrap rounded-full bg-fg px-3 py-1 text-xs font-semibold text-bg"
+          className="pointer-events-none absolute top-0 left-0 z-20 translate-x-5 translate-y-5 rounded-full bg-fg px-3 py-1 text-xs font-semibold whitespace-nowrap text-bg"
         >
           {label}
         </motion.span>

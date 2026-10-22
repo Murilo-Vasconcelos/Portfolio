@@ -30,7 +30,7 @@ export default function Certifications({
               <ul className="mt-6 space-y-5">
                 {group.items.map((item) => (
                   <li key={item.name} className="border-t border-line pt-4">
-                    <p className="font-semibold leading-snug">{item.name}</p>
+                    <p className="leading-snug font-semibold">{item.name}</p>
                     <p className="mt-1 text-sm text-muted">{item.org}</p>
                   </li>
                 ))}

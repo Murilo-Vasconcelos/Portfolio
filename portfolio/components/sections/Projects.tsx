@@ -26,7 +26,7 @@ function TechChips({ tech }: { tech: readonly string[] }) {
 function Detail({ label, text }: { label: string; text: string }) {
   return (
     <div>
-      <p className="font-display text-xs uppercase tracking-[0.25em] text-muted">
+      <p className="font-display text-xs tracking-[0.25em] text-muted uppercase">
         {label}
       </p>
       <p className="mt-1.5 leading-7">{text}</p>
@@ -115,15 +115,15 @@ function FeaturedProject({ project, dict }: { project: Project; dict: Dict }) {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[3fr_2fr]">
           <div className="flex flex-col gap-6">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="rounded-full bg-fg px-3 py-1 font-display text-xs uppercase tracking-[0.25em] text-bg">
+              <span className="rounded-full bg-fg px-3 py-1 font-display text-xs tracking-[0.25em] text-bg uppercase">
                 {dict.featuredLabel}
               </span>
-              <span className="font-display text-sm uppercase tracking-[0.2em] text-muted">
+              <span className="font-display text-sm tracking-[0.2em] text-muted uppercase">
                 {text.tag}
               </span>
             </div>
 
-            <h3 className="font-display text-5xl font-bold uppercase leading-none [overflow-wrap:anywhere] sm:text-8xl">
+            <h3 className="font-display text-5xl leading-none font-bold [overflow-wrap:anywhere] uppercase sm:text-8xl">
               {text.name}
             </h3>
             <p className="font-semibold">{text.status}</p>
@@ -147,7 +147,7 @@ function FeaturedProject({ project, dict }: { project: Project; dict: Dict }) {
               />
             )}
             <div>
-              <p className="font-display text-xs uppercase tracking-[0.25em] text-muted">
+              <p className="font-display text-xs tracking-[0.25em] text-muted uppercase">
                 {dict.teamLabel}
               </p>
               <ul className="mt-3 space-y-2">
@@ -217,10 +217,10 @@ function ProjectCard({
             webm={"videoWebm" in project}
           />
         )}
-        <p className="font-display text-xs uppercase tracking-[0.2em] text-muted">
+        <p className="font-display text-xs tracking-[0.2em] text-muted uppercase">
           {text.tag}
         </p>
-        <h3 className="font-display text-2xl font-bold uppercase leading-tight [overflow-wrap:anywhere] sm:text-3xl">
+        <h3 className="font-display text-2xl leading-tight font-bold [overflow-wrap:anywhere] uppercase sm:text-3xl">
           {text.name}
         </h3>
         <p className="text-sm font-semibold">{text.status}</p>

@@ -47,7 +47,7 @@ export default function Header({
 
       {/* Menu só aparece em telas largas */}
       <nav aria-label={dict.navAria} className="hidden xl:block">
-        <ul className="flex items-center gap-7 font-display text-sm uppercase tracking-[0.15em]">
+        <ul className="flex items-center gap-7 font-display text-sm tracking-[0.15em] uppercase">
           {links.map((link) => (
             <li key={link.href}>
               <a

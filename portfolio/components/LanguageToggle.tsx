@@ -31,7 +31,7 @@ export default function LanguageToggle({
             lang={htmlLang[code]}
             hrefLang={htmlLang[code]}
             aria-current={active ? "true" : undefined}
-            className={`rounded-full px-2.5 py-1.5 uppercase sm:px-3 transition-colors ${
+            className={`rounded-full px-2.5 py-1.5 uppercase transition-colors sm:px-3 ${
               active ? "bg-fg text-bg" : "text-muted hover:text-fg"
             }`}
           >
