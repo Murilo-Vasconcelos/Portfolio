@@ -1,7 +1,11 @@
 # Portfólio — Murilo Gomes
 
-Estudante de Engenharia de Software. Site de uma página que conta a trajetória
-profissional e acadêmica por rolagem, com tema claro/escuro, PT/EN e animações.
+Estudante de Engenharia de Software. Portfólio que conta a trajetória
+profissional e acadêmica por rolagem, com tema claro/escuro, PT/EN e animações,
+projetos carregados da API do GitHub, formulário de contato e um painel do dono.
+
+**Site publicado:** https://portfolio-taupe-nu-izjvzchmfp.vercel.app
+(a Vercel publica de novo a cada push na `main`).
 
 **Stack:** Next.js (App Router) · TypeScript · Tailwind CSS · Framer Motion · Lenis · next-themes
 
@@ -26,9 +30,9 @@ idioma do navegador de quem visita.
 - **Jornada:** frase que acende palavra por palavra e linha do tempo que se desenha na rolagem
 - **Experiência:** Bozza, com a TV do RH em destaque
 - **Projetos:** REVI em destaque (com a equipe e links do LinkedIn), Global Solution, GoGames e TCC, em cards que inclinam com o mouse
-- **Skills:** 15 tecnologias com logo, em 4 grupos (linguagens, front-end, dados e nuvem, design)
+- **Skills:** 9 tecnologias com logo, em 3 grupos (linguagens, front-end e dados)
 - **Certificações:** 9 certificados em 4 grupos e faixas infinitas de palavras
-- **Marcos** e **Contato** (botões magnéticos)
+- **Contato** com botões magnéticos
 - Troca de tema com um círculo que se espalha a partir do botão (navegadores com View Transitions)
 - Quem usa "reduzir movimento" no sistema vê tudo parado e no lugar
 - Prévia de link (imagem ao compartilhar no LinkedIn/WhatsApp), sitemap, robots e hreflang PT/EN
@@ -63,7 +67,7 @@ visita, e o botão PT | EN no topo troca depois.
 app/[lang]/     página, layout e dicionários de texto
 app/[lang]/projetos/  lista de projetos e página de cada um (/projetos/[slug])
 components/     cabeçalho, botões e animações
-components/sections/  Jornada, Experiência, Projetos, Skills, Certificações, Marcos, Contato
+components/sections/  Jornada, Experiência, Projetos, Skills, Certificações, Contato
 data/           projetos, equipe, ferramentas, skills (e logos) e dados do perfil
 lib/i18n.ts     lista de idiomas
 services/       acesso à API do GitHub, com cache
@@ -138,6 +142,20 @@ roda em paralelo de graça, testa Chromium, Firefox e WebKit, emula celular e
 sobe o servidor do Next sozinho (`webServer`). O CI fica no GitHub Actions
 porque o código já está no GitHub e o plano gratuito cobre repositórios
 públicos; a Vercel continua cuidando só do deploy.
+
+## Decisões de stack
+
+Cada escolha com o que foi comparado, o critério e o que se aceitou perder. As
+decisões de áreas específicas (GitHub, testes, hooks) estão nas seções abaixo.
+
+| Escolha | Comparado com | Critério | O que se aceitou perder |
+| --- | --- | --- | --- |
+| Next.js 16 (App Router) | Vite + React Router, TanStack Router | Rotas, renderização no servidor, cache e otimização de imagem já incluídos; HTML pronto ajuda SEO e Lighthouse | Mais conceitos (Server Components, cache) e o melhor resultado depende da Vercel |
+| Tailwind CSS 4 | CSS Modules, shadcn/ui, MUI | Identidade própria sem brigar com o tema de uma biblioteca; o Prettier ordena as classes | Componentes prontos; o JSX fica com classes longas |
+| Framer Motion + Lenis | GSAP, só CSS | Animações ligadas à rolagem com API em React e respeito a "reduzir movimento" | Peso no pacote, que aparece no tempo de bloqueio da home |
+| next-themes | Context + `localStorage` feito à mão | Grava o tema e aplica antes da pintura, sem piscar | Uma dependência a mais para algo pequeno |
+| Conventional Commits + commitlint | Gitmoji, mensagens livres | Padrão de mercado, lido por ferramentas de changelog e fácil de validar | Emojis e mensagens livres |
+| Vercel | Netlify, Hostinger | Feita pela equipe do Next, prévia por PR e deploy a cada push sem configuração | Prender o deploy a um fornecedor |
 
 ## Padrões e fluxo de trabalho
 
