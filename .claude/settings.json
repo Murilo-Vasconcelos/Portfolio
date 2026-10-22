@@ -17,7 +17,8 @@
       "Bash(git switch:*)",
       "Bash(git checkout -b:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "mcp__next-devtools"
     ],
     "ask": ["Bash(git push:*)", "Bash(npm install:*)", "Bash(npm i:*)"],
     "deny": [
@@ -26,7 +27,26 @@
       "Bash(git push --force:*)",
       "Bash(git push -f:*)",
       "Bash(git commit --no-verify:*)",
-      "Bash(git commit -n:*)"
+      "Bash(git commit -n:*)",
+      "Edit(**/.env)",
+      "Edit(**/.env.*)",
+      "Write(**/.env)",
+      "Write(**/.env.*)"
+    ]
+  },
+  "enabledMcpjsonServers": ["next-devtools", "playwright", "supabase"],
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/formatar.mjs\"",
+            "timeout": 30
+          }
+        ]
+      }
     ]
   }
 }
