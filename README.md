@@ -288,6 +288,14 @@ As regras completas (para pessoas e para a IA) estão no [`CLAUDE.md`](CLAUDE.md
 - **Formatação:** Prettier (com ordenação das classes do Tailwind) e ESLint.
   `npm run format` formata tudo; `npm run lint` e `npm run typecheck` conferem.
   O CI roda tudo isso de novo em cada Pull Request (veja "Testes e CI").
+- **Nomes:** componentes em PascalCase com `export default function`
+  (`TiltCard.tsx`), hooks em camelCase começando com `use`
+  (`hooks/useMediaQuery.ts`), utilitários e dados em camelCase (`site.ts`,
+  `skillIcons.ts`), testes como `<nome>.test.ts(x)` (unidade) e
+  `<fluxo>.spec.ts` (ponta a ponta) e imports pelo alias `@/`.
+- **Onde fica cada coisa:** componente visual não chama API; o acesso a
+  GitHub, Supabase e Resend fica em `services/`, as mutações em Server Actions
+  (`actions/`) e a lógica de navegador reaproveitável em `hooks/`.
 - **Commits:** [Conventional Commits](https://www.conventionalcommits.org/pt-br/)
   em português, ex.: `feat(projetos): Adiciona página de detalhe`. Tipos:
   `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`,
