@@ -85,6 +85,10 @@ docs: Explica o fluxo de branches no README
 Tipos: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`,
 `ci`, `chore`, `revert`. Um commit por mudança lógica; commits pequenos.
 
+O autor de todo commit é sempre `Murilo Gomes <murilovasc.gomes@gmail.com>`,
+inclusive quando quem commita é a IA. Antes do primeiro commit em um ambiente
+novo, confira `git config user.name` e `git config user.email`.
+
 O commitlint (hook `commit-msg`) rejeita mensagens fora do padrão. O hook
 `pre-commit` roda ESLint e Prettier nos arquivos alterados (lint-staged).
 **Nunca use `--no-verify`** para pular os hooks; corrija o problema.
