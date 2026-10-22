@@ -1,10 +1,8 @@
 import type { Dictionary } from "@/app/[lang]/dictionaries";
+import { buttonClasses } from "@/components/Button";
 import Magnetic from "@/components/Magnetic";
 import Reveal from "@/components/Reveal";
 import { profile } from "@/data/profile";
-
-const buttonBase =
-  "inline-block rounded-full border px-7 py-3.5 text-sm font-semibold transition-colors";
 
 export default function Contact({
   dict,
@@ -46,7 +44,7 @@ export default function Contact({
               <a
                 href={profile.resume}
                 download
-                className={`${buttonBase} border-fg bg-fg text-bg hover:bg-transparent hover:text-fg`}
+                className={buttonClasses({ size: "lg" })}
               >
                 {dict.resume}
               </a>
@@ -57,7 +55,10 @@ export default function Contact({
                   href={link.href}
                   target={link.href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
-                  className={`${buttonBase} border-line hover:border-fg`}
+                  className={buttonClasses({
+                    variant: "secondary",
+                    size: "lg",
+                  })}
                 >
                   {link.label} ↗
                 </a>

@@ -41,7 +41,7 @@ test.describe("tema", () => {
     const html = page.locator("html");
     await expect(html).not.toHaveClass(/dark/);
 
-    await page.getByRole("button", { name: "Alternar tema" }).click();
+    await page.getByRole("button", { name: "Tema escuro" }).click();
     await expect(html).toHaveClass(/dark/);
 
     await page.reload();

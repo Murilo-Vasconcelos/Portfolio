@@ -6,7 +6,6 @@
   "header": {
     "themeToLight": "Light mode",
     "themeToDark": "Dark mode",
-    "themeAria": "Toggle theme",
     "langAria": "Language",
     "home": "Back to the start",
     "skipToContent": "Skip to content",

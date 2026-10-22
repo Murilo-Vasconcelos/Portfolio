@@ -1,3 +1,5 @@
+import { buttonClasses } from "@/components/Button";
+
 // Aviso de lista vazia, com um link para seguir em frente
 export default function EmptyState({
   title,
@@ -16,7 +18,7 @@ export default function EmptyState({
         href={action.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-6 inline-block rounded-full border border-fg px-6 py-3 text-sm font-semibold transition-colors hover:bg-fg hover:text-bg"
+        className={buttonClasses({ variant: "outline", className: "mt-6" })}
       >
         {action.label} ↗
       </a>

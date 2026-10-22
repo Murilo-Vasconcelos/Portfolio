@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 
 // Imagem do projeto: aparece inteira (sem cortar), na proporção original,
 // dentro de uma moldura com borda fina.
@@ -13,6 +13,16 @@ export default function ProjectMedia({
   video?: string;
   webm?: boolean;
 }) {
+  const sizes = "(min-width: 1024px) 520px, (min-width: 768px) 45vw, 90vw";
+  // A capa do vídeo não passa pelo <Image>; getImageProps gera a mesma URL
+  // otimizada (WebP no tamanho de exibição) para usar no poster.
+  const poster = getImageProps({
+    src: image.src,
+    alt,
+    width: 640,
+    height: Math.round((640 * image.height) / image.width),
+  }).props.src;
+
   return (
     <div
       data-no-tilt={video ? "" : undefined}
@@ -25,7 +35,7 @@ export default function ProjectMedia({
           controls
           playsInline
           preload="none"
-          poster={image.src}
+          poster={poster}
           aria-label={alt}
           width={image.width}
           height={image.height}
@@ -42,8 +52,7 @@ export default function ProjectMedia({
           alt={alt}
           width={image.width}
           height={image.height}
-          sizes="(min-width: 1024px) 520px, (min-width: 768px) 45vw, 90vw"
-          unoptimized
+          sizes={sizes}
           className="h-auto w-full"
         />
       )}

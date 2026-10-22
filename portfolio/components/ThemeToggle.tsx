@@ -8,7 +8,6 @@ const subscribe = () => () => {};
 type Labels = {
   toLight: string;
   toDark: string;
-  aria: string;
 };
 
 export default function ThemeToggle({ labels }: { labels: Labels }) {
@@ -74,11 +73,11 @@ export default function ThemeToggle({ labels }: { labels: Labels }) {
   return (
     <button
       onClick={toggle}
-      aria-label={labels.aria}
       className="rounded-full border border-line px-3 py-2 text-xs font-semibold whitespace-nowrap transition-colors hover:bg-fg hover:text-bg sm:px-4 sm:text-sm"
     >
-      {/* Em telas muito estreitas (< 360px) o botão vira só um ícone */}
-      <span className="max-[359px]:hidden">
+      {/* Em telas muito estreitas (< 360px) o botão vira só um ícone; o texto
+          continua lá para leitores de tela, e é ele que dá nome ao botão */}
+      <span className="max-[359px]:sr-only">
         {isDark ? labels.toLight : labels.toDark}
       </span>
       <svg

@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import {
   motion,
+  useMotionTemplate,
   useScroll,
   useTransform,
   type MotionValue,
@@ -23,13 +24,16 @@ function Word({
 }) {
   const start = index / total;
   const end = (index + 1) / total;
-  const opacity = useTransform(progress, [start, end], [0.15, 1]);
+  // A palavra vai da cor "muted" para a cor do texto. Antes era opacidade
+  // 0.15 → 1, mas texto quase transparente reprova no contraste (WCAG); a
+  // cor "muted" já passa e ainda deixa claro o que falta acender.
+  const lit = useTransform(progress, [start, end], [0, 100]);
+  const color = useMotionTemplate`color-mix(in srgb, var(--fg) ${lit}%, var(--muted))`;
 
   return (
     <>
       <motion.span
-        data-reveal
-        style={{ opacity }}
+        style={{ color }}
         className={
           highlighted
             ? "underline decoration-2 underline-offset-[0.2em]"

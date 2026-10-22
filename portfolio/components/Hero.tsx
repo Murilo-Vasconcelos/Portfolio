@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
+import { buttonClasses } from "@/components/Button";
 import CountUp from "@/components/CountUp";
 import HeroRings from "@/components/HeroRings";
 import { useIntro } from "@/components/IntroProvider";
@@ -22,9 +23,6 @@ const fadeUp: Variants = {
     transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
   },
 };
-
-const buttonBase =
-  "rounded-full border px-6 py-3 text-sm font-semibold transition-colors";
 
 export default function Hero({ dict }: { dict: Dictionary["hero"] }) {
   const { ready } = useIntro();
@@ -98,16 +96,12 @@ export default function Hero({ dict }: { dict: Dictionary["hero"] }) {
             data-reveal
             className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start"
           >
-            <a
-              href={profile.resume}
-              download
-              className={`${buttonBase} border-fg bg-fg text-bg hover:bg-transparent hover:text-fg`}
-            >
+            <a href={profile.resume} download className={buttonClasses()}>
               {dict.resume}
             </a>
             <a
               href="#jornada"
-              className={`${buttonBase} border-line hover:border-fg`}
+              className={buttonClasses({ variant: "secondary" })}
             >
               {dict.journey}
             </a>

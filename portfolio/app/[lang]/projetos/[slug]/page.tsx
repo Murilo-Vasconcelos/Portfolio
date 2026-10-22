@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { buttonClasses } from "@/components/Button";
 import ProjectMedia from "@/components/ProjectMedia";
 import TagList from "@/components/TagList";
 import { findProjectBySlug, projectSlug, projects } from "@/data/projects";
@@ -150,7 +151,7 @@ export default async function ProjectPage({ params }: Props) {
           href={repo.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-full border border-fg bg-fg px-6 py-3 text-sm font-semibold text-bg transition-colors hover:bg-transparent hover:text-fg"
+          className={buttonClasses()}
         >
           {page.repoLink} ↗
         </a>
@@ -159,7 +160,7 @@ export default async function ProjectPage({ params }: Props) {
             href={repo.homepage}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-line px-6 py-3 text-sm font-semibold transition-colors hover:border-fg"
+            className={buttonClasses({ variant: "secondary" })}
           >
             {page.homepageLink} ↗
           </a>
