@@ -193,8 +193,8 @@
       }
     },
     "github": {
-      "title": "Direto do GitHub",
-      "intro": "Os repositórios públicos mais recentes, carregados da API do GitHub.",
+      "title": "Em destaque no GitHub",
+      "intro": "Repositórios que escolhi destacar, com descrição, linguagem e data vindas direto da API do GitHub.",
       "seeAll": "Ver todos os projetos"
     }
   },
@@ -348,5 +348,75 @@
     "text": "Este endereço não existe ou o projeto mudou de nome. Volte para o início ou veja a lista de projetos.",
     "home": "Voltar ao início",
     "projects": "Ver projetos"
+  },
+  "panel": {
+    "header": {
+      "label": "Painel",
+      "home": "Voltar ao site",
+      "logout": "Sair",
+      "loggingOut": "Saindo…"
+    },
+    "login": {
+      "metaTitle": "Entrar no painel | Murilo Gomes",
+      "index": "Painel",
+      "title": "Entrar",
+      "intro": "Área só do dono do site, para ler as mensagens do formulário e escolher os projetos em destaque.",
+      "email": "E-mail",
+      "password": "Senha",
+      "submit": "Entrar",
+      "sending": "Entrando…",
+      "errors": {
+        "emailInvalid": "Informe um e-mail válido.",
+        "passwordRequired": "Informe a senha."
+      },
+      "wrong": "E-mail ou senha incorretos.",
+      "unavailable": "O login está indisponível agora. Tente de novo em alguns instantes."
+    },
+    "dashboard": {
+      "metaTitle": "Painel | Murilo Gomes",
+      "index": "Painel",
+      "title": "Dashboard",
+      "loading": "Carregando o painel",
+      "signedInAs": "Logado como",
+      "messages": {
+        "title": "Mensagens",
+        "intro": "Tudo o que chegou pelo formulário de contato, das mais novas para as mais antigas.",
+        "loading": "Carregando mensagens",
+        "total": "Total",
+        "pendingCount": "Pendentes",
+        "pending": "Pendente",
+        "answered": "Respondida",
+        "markAnswered": "Marcar como respondida",
+        "markPending": "Marcar como pendente",
+        "saving": "Salvando…",
+        "reply": "Responder por e-mail",
+        "replySubject": "Re: sua mensagem pelo portfólio",
+        "toggleError": "Não consegui atualizar. Tente de novo.",
+        "empty": {
+          "title": "Nenhuma mensagem ainda",
+          "text": "Quando alguém usar o formulário de contato, a mensagem aparece aqui."
+        }
+      },
+      "featured": {
+        "title": "Projetos em destaque",
+        "intro": "Escolha até 4 repositórios para aparecer na home. Sem escolha, a home mostra os mais recentes.",
+        "loading": "Carregando repositórios",
+        "selectedCount": "{count} de {max} selecionados",
+        "save": "Salvar destaques",
+        "saving": "Salvando…",
+        "saved": "Destaques salvos. A home já mostra a nova escolha.",
+        "tooMany": "Escolha no máximo 4 projetos.",
+        "error": "Não consegui salvar. Tente de novo.",
+        "empty": {
+          "title": "Nenhum repositório encontrado",
+          "text": "A API do GitHub não devolveu repositórios públicos para escolher."
+        }
+      },
+      "error": {
+        "title": "Não consegui carregar esta parte",
+        "text": "O serviço não respondeu agora. Tente de novo em alguns instantes.",
+        "retry": "Tentar de novo"
+      }
+    }
   }
 }
