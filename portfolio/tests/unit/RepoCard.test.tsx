@@ -16,13 +16,14 @@ const repo: Repo = {
   updatedAt: "2026-10-20T12:00:00Z",
 };
 
-function renderCard(overrides: Partial<Repo> = {}) {
+function renderCard(overrides: Partial<Repo> = {}, headingLevel?: "h2" | "h3") {
   return render(
     <ul>
       <RepoCard
         repo={{ ...repo, ...overrides }}
         lang="pt"
         dict={pt.projectsPage}
+        headingLevel={headingLevel}
       />
     </ul>,
   );
@@ -59,5 +60,12 @@ describe("RepoCard", () => {
   it("esconde as estrelas quando não há nenhuma", () => {
     renderCard({ stars: 0 });
     expect(screen.queryByText(/Estrelas/)).not.toBeInTheDocument();
+  });
+
+  it("usa o nível de título pedido pela página", () => {
+    renderCard({}, "h2");
+    expect(
+      screen.getByRole("heading", { level: 2, name: "Portfolio" }),
+    ).toBeInTheDocument();
   });
 });

@@ -193,8 +193,8 @@
       }
     },
     "github": {
-      "title": "Straight from GitHub",
-      "intro": "My latest public repositories, loaded from the GitHub API.",
+      "title": "Featured on GitHub",
+      "intro": "Repositories I chose to feature, with description, language and date straight from the GitHub API.",
       "seeAll": "See all projects"
     }
   },
@@ -348,5 +348,75 @@
     "text": "This address doesn't exist or the project was renamed. Go back home or browse the project list.",
     "home": "Back to home",
     "projects": "See projects"
+  },
+  "panel": {
+    "header": {
+      "label": "Dashboard",
+      "home": "Back to the site",
+      "logout": "Sign out",
+      "loggingOut": "Signing out…"
+    },
+    "login": {
+      "metaTitle": "Sign in to the dashboard | Murilo Gomes",
+      "index": "Dashboard",
+      "title": "Sign in",
+      "intro": "Owner-only area to read contact form messages and choose the featured projects.",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "sending": "Signing in…",
+      "errors": {
+        "emailInvalid": "Enter a valid email.",
+        "passwordRequired": "Enter your password."
+      },
+      "wrong": "Wrong email or password.",
+      "unavailable": "Sign-in is unavailable right now. Please try again in a moment."
+    },
+    "dashboard": {
+      "metaTitle": "Dashboard | Murilo Gomes",
+      "index": "Dashboard",
+      "title": "Dashboard",
+      "loading": "Loading the dashboard",
+      "signedInAs": "Signed in as",
+      "messages": {
+        "title": "Messages",
+        "intro": "Everything that came through the contact form, newest first.",
+        "loading": "Loading messages",
+        "total": "Total",
+        "pendingCount": "Pending",
+        "pending": "Pending",
+        "answered": "Answered",
+        "markAnswered": "Mark as answered",
+        "markPending": "Mark as pending",
+        "saving": "Saving…",
+        "reply": "Reply by email",
+        "replySubject": "Re: your message on my portfolio",
+        "toggleError": "I couldn't update it. Please try again.",
+        "empty": {
+          "title": "No messages yet",
+          "text": "When someone uses the contact form, the message shows up here."
+        }
+      },
+      "featured": {
+        "title": "Featured projects",
+        "intro": "Choose up to 4 repositories to show on the home page. With none chosen, the home shows the latest ones.",
+        "loading": "Loading repositories",
+        "selectedCount": "{count} of {max} selected",
+        "save": "Save featured",
+        "saving": "Saving…",
+        "saved": "Featured projects saved. The home page already shows the new choice.",
+        "tooMany": "Choose at most 4 projects.",
+        "error": "I couldn't save. Please try again.",
+        "empty": {
+          "title": "No repositories found",
+          "text": "The GitHub API returned no public repositories to choose from."
+        }
+      },
+      "error": {
+        "title": "I couldn't load this part",
+        "text": "The service didn't respond right now. Please try again in a moment.",
+        "retry": "Try again"
+      }
+    }
   }
 }

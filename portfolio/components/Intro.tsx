@@ -10,6 +10,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { useLenis } from "lenis/react";
+import { usePathname } from "next/navigation";
 import { useIntro } from "@/components/IntroProvider";
 import { INTRO_STORAGE_KEY } from "@/lib/intro";
 
@@ -42,9 +43,11 @@ export default function Intro({ name, label, skipLabel }: Props) {
   const lenis = useLenis();
   const reduceMotion = useReducedMotion();
 
-  // Quem já viu a intro nesta sessão, ou pediu "reduzir movimento", pula direto
+  // Quem já viu a intro nesta sessão, ou pediu "reduzir movimento", pula direto.
+  // No painel (login e dashboard) a intro não faz sentido: é uma ferramenta.
   const seen = useSyncExternalStore(subscribe, readSeen, () => false);
-  const skip = seen || Boolean(reduceMotion);
+  const inPanel = /^\/(pt|en)\/(dashboard|login)(\/|$)/.test(usePathname());
+  const skip = seen || inPanel || Boolean(reduceMotion);
 
   const [finished, setFinished] = useState(false);
   const showing = !skip && !finished;
