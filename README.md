@@ -67,6 +67,8 @@ components/sections/  Jornada, Experiência, Projetos, Skills, Certificações, 
 data/           projetos, equipe, ferramentas, skills (e logos) e dados do perfil
 lib/i18n.ts     lista de idiomas
 services/       acesso à API do GitHub, com cache
+tests/unit/     testes de unidade (Vitest)
+tests/e2e/      testes de ponta a ponta (Playwright)
 proxy.ts        escolhe o idioma na primeira visita
 public/         currículo em PDF e imagens
 ```
@@ -100,12 +102,50 @@ foi descartada porque exige token até para dados públicos, e a REST entrega
 tudo que o site usa (descrição, linguagem, tópicos e data de atualização) sem
 biblioteca extra.
 
+## Testes e CI
+
+```bash
+cd portfolio
+npm test            # Vitest: testes de unidade (uma passada)
+npm run test:watch  # Vitest em modo observação, enquanto programa
+npm run test:e2e    # Playwright: faz o build, sobe o site e testa no Chromium
+```
+
+- **Unidade (Vitest + Testing Library),** em `tests/unit/`: o serviço do
+  GitHub com a API simulada (conversão dos dados, filtro de forks e
+  arquivados, limite de requisições, queda de rede), a escolha de idioma do
+  `proxy.ts`, a formatação de datas, o `RepoCard` e uma checagem de que
+  `pt.json` e `en.json` têm as mesmas chaves e nenhum texto vazio.
+- **Ponta a ponta (Playwright),** em `tests/e2e/`, no build de produção, em
+  tela de computador e de celular: redirecionamento pelo idioma do navegador,
+  troca de idioma mantendo a página, tema que continua depois de recarregar,
+  página 404 (com status 404) e a lista e o detalhe dos projetos vindos da
+  API. Se a API do GitHub estiver fora, os testes de lista conferem a tela de
+  erro com "tentar de novo", e os de detalhe são pulados com o motivo.
+- **CI (GitHub Actions),** em `.github/workflows/ci.yml`, a cada Pull Request
+  e push na `main`, em dois jobs paralelos: (1) lint, typecheck,
+  `format:check` e Vitest; (2) build e Playwright, usando o token automático
+  do Actions para não esbarrar no limite da API do GitHub. O relatório do
+  Playwright fica salvo como artefato da execução.
+
+**Por que assim:** o Vitest é o que o guia do Next recomenda para testes de
+unidade, usa a mesma configuração do Vite, entende TypeScript e JSX sem Babel
+e é bem mais rápido que o Jest, que foi a alternativa descartada (precisa de
+transformador à parte e tem suporte a ESM mais trabalhoso). Componentes
+`async` do servidor não rodam no Vitest, por isso páginas inteiras são
+testadas no Playwright. O Playwright foi escolhido no lugar do Cypress porque
+roda em paralelo de graça, testa Chromium, Firefox e WebKit, emula celular e
+sobe o servidor do Next sozinho (`webServer`). O CI fica no GitHub Actions
+porque o código já está no GitHub e o plano gratuito cobre repositórios
+públicos; a Vercel continua cuidando só do deploy.
+
 ## Padrões e fluxo de trabalho
 
 As regras completas (para pessoas e para a IA) estão no [`CLAUDE.md`](CLAUDE.md).
 
 - **Formatação:** Prettier (com ordenação das classes do Tailwind) e ESLint.
   `npm run format` formata tudo; `npm run lint` e `npm run typecheck` conferem.
+  O CI roda tudo isso de novo em cada Pull Request (veja "Testes e CI").
 - **Commits:** [Conventional Commits](https://www.conventionalcommits.org/pt-br/)
   em português, ex.: `feat(projetos): Adiciona página de detalhe`. Tipos:
   `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`,

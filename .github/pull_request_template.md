@@ -14,6 +14,7 @@
 
 - [ ] Branch segue o padrão (`feature/*`, `fix/*`, `docs/*`...)
 - [ ] Commits no padrão Conventional Commits
-- [ ] `npm run lint`, `npm run typecheck` e `npm run build` passam
+- [ ] `npm run lint`, `npm run typecheck`, `npm test` e `npm run build` passam (o CI confere)
+- [ ] Lógica nova tem teste (Vitest em `tests/unit/` ou Playwright em `tests/e2e/`)
 - [ ] Textos novos em `pt.json` e `en.json`
 - [ ] Prévia da Vercel conferida (desktop e mobile)
