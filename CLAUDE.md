@@ -132,3 +132,19 @@ O commitlint (hook `commit-msg`) rejeita mensagens fora do padrão. O hook
   pedido.
 - Ao criar uma decisão de stack (biblioteca, serviço), registre no README o
   porquê e a alternativa descartada; isso faz parte da avaliação.
+
+## Ferramentas do agente (versionadas no repositório)
+
+- **Skill `nova-funcionalidade`** (`.claude/skills/`): o roteiro da branch ao
+  PR. Use em todo pedido de funcionalidade ou correção.
+- **Subagente `revisor`** (`.claude/agents/revisor.md`): confere o diff contra
+  este arquivo. Chame antes de abrir o PR e corrija o que ele apontar.
+- **Hook de formatação** (`.claude/hooks/formatar.mjs`): roda o Prettier em
+  cada arquivo de `portfolio/` que o agente edita. Se ele avisar erro de
+  sintaxe, corrija o arquivo.
+- **MCPs** (`.mcp.json`):
+  - `next-devtools`: erros, rotas e logs do `npm run dev` em execução. Prefira
+    ele a rodar `next build` só para ver se compila.
+  - `playwright`: abre o site num navegador para conferir a tela de verdade.
+  - `supabase`: só leitura (`read_only=true`). Serve para consultar tabelas e
+    políticas; mudança no banco continua sendo migração nova, nunca SQL solto.
