@@ -16,11 +16,10 @@ const spring = { stiffness: 120, damping: 18, mass: 0.6 };
 
 type Props = {
   alt: string;
-  badge: string;
 };
 
 // Cartão com a foto. Com mouse, ele inclina de leve acompanhando o cursor.
-export default function Portrait({ alt, badge }: Props) {
+export default function Portrait({ alt }: Props) {
   const reduceMotion = useReducedMotion();
   const hasMouse = useMediaQuery("(hover: hover) and (pointer: fine)");
   const enabled = hasMouse && !reduceMotion;
@@ -63,9 +62,11 @@ export default function Portrait({ alt, badge }: Props) {
           alt={alt}
           fill
           priority
-          quality={90}
+          // O arquivo já está em alta resolução e qualidade; servir direto evita
+          // uma segunda compressão que tiraria nitidez.
+          unoptimized
           sizes="(min-width: 1280px) 460px, (min-width: 640px) 400px, 300px"
-          className="object-cover object-top grayscale transition duration-500 hover:grayscale-0"
+          className="object-cover object-top"
         />
       ) : (
         // Espaço reservado enquanto não há foto: grade fina e as iniciais
@@ -79,10 +80,6 @@ export default function Portrait({ alt, badge }: Props) {
           </span>
         </div>
       )}
-
-      <div className="absolute inset-x-3 bottom-3 rounded-full border border-line bg-bg/70 px-3 py-1.5 text-center text-xs font-semibold backdrop-blur-md">
-        {badge}
-      </div>
     </motion.div>
   );
 }

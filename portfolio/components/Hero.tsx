@@ -60,7 +60,7 @@ export default function Hero({ dict }: { dict: Dictionary["hero"] }) {
           <p className="hidden rotate-180 border-r border-line pr-4 font-display text-sm uppercase tracking-[0.4em] text-muted [writing-mode:vertical-rl] lg:block">
             {dict.role}
           </p>
-          <Portrait alt={dict.photoAlt} badge={dict.badge} />
+          <Portrait alt={dict.photoAlt} />
         </motion.div>
 
         {/* Nome, texto e botões */}
