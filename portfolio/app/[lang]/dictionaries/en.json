@@ -316,10 +316,30 @@
     "index": "06",
     "title": "Contact",
     "heading": "Let's talk?",
-    "text": "If you liked the path so far, I'd love to chat. My resume is right below, and LinkedIn is the fastest way to reach me.",
+    "text": "If you enjoyed the journey so far, send me a message through the form: it lands in my inbox and I reply by email. If you prefer, my résumé and LinkedIn are right here too.",
     "resume": "Download resume",
     "top": "Back to top",
-    "footer": "Built with Next.js, Tailwind CSS and Framer Motion."
+    "footer": "Built with Next.js, Tailwind CSS and Framer Motion.",
+    "form": {
+      "title": "Send a message",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "messageHint": "At least 20 characters.",
+      "submit": "Send message",
+      "sending": "Sending…",
+      "success": "Message sent! Thanks for reaching out, I'll reply to your email soon.",
+      "error": "I couldn't send it right now. Please try again in a moment or reach me on LinkedIn.",
+      "honeypot": "Leave this field empty",
+      "errors": {
+        "nameShort": "Enter your name, at least 2 letters.",
+        "nameLong": "Your name can have at most 100 characters.",
+        "emailRequired": "Enter your email so I can reply.",
+        "emailInvalid": "Invalid email. Check that it looks like name@domain.com.",
+        "messageShort": "Your message needs at least 20 characters.",
+        "messageLong": "Your message can have at most 2,000 characters."
+      }
+    }
   },
   "notFound": {
     "metaTitle": "Page not found | Murilo Gomes",

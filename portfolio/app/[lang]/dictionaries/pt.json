@@ -316,10 +316,30 @@
     "index": "06",
     "title": "Contato",
     "heading": "Vamos conversar?",
-    "text": "Se curtiu o caminho até aqui, vou gostar de trocar uma ideia. O currículo está logo abaixo e o LinkedIn é o jeito mais rápido de falar comigo.",
+    "text": "Se curtiu o caminho até aqui, me manda uma mensagem pelo formulário: ela chega no meu e-mail e eu respondo por lá. Se preferir, o currículo e o LinkedIn estão aqui também.",
     "resume": "Baixar currículo",
     "top": "Voltar ao topo",
-    "footer": "Feito com Next.js, Tailwind CSS e Framer Motion."
+    "footer": "Feito com Next.js, Tailwind CSS e Framer Motion.",
+    "form": {
+      "title": "Mande uma mensagem",
+      "name": "Nome",
+      "email": "E-mail",
+      "message": "Mensagem",
+      "messageHint": "No mínimo 20 caracteres.",
+      "submit": "Enviar mensagem",
+      "sending": "Enviando…",
+      "success": "Mensagem enviada! Obrigado pelo contato, respondo em breve no seu e-mail.",
+      "error": "Não consegui enviar agora. Tente de novo em alguns instantes ou me chame no LinkedIn.",
+      "honeypot": "Não preencha este campo",
+      "errors": {
+        "nameShort": "Informe seu nome, com pelo menos 2 letras.",
+        "nameLong": "O nome pode ter no máximo 100 caracteres.",
+        "emailRequired": "Informe seu e-mail para eu poder responder.",
+        "emailInvalid": "E-mail inválido. Confira se está no formato nome@dominio.com.",
+        "messageShort": "A mensagem precisa ter no mínimo 20 caracteres.",
+        "messageLong": "A mensagem pode ter no máximo 2.000 caracteres."
+      }
+    }
   },
   "notFound": {
     "metaTitle": "Página não encontrada | Murilo Gomes",
