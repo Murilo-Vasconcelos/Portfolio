@@ -55,7 +55,7 @@ export default function Portrait({ alt, badge }: Props) {
         y: shiftY,
         transformPerspective: 900,
       }}
-      className="relative aspect-[4/5] w-full max-w-[260px] overflow-hidden rounded-3xl border border-line bg-surface sm:max-w-[320px]"
+      className="relative aspect-[4/5] w-full max-w-[300px] overflow-hidden rounded-3xl border border-line bg-surface sm:max-w-[380px] lg:w-[380px] lg:max-w-none xl:w-[460px]"
     >
       {profile.photo ? (
         <Image
@@ -63,8 +63,9 @@ export default function Portrait({ alt, badge }: Props) {
           alt={alt}
           fill
           priority
-          sizes="(min-width: 640px) 320px, 260px"
-          className="object-cover grayscale transition duration-500 hover:grayscale-0"
+          quality={90}
+          sizes="(min-width: 1280px) 460px, (min-width: 640px) 400px, 300px"
+          className="object-cover object-top grayscale transition duration-500 hover:grayscale-0"
         />
       ) : (
         // Espaço reservado enquanto não há foto: grade fina e as iniciais

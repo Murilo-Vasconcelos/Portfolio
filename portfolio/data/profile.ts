@@ -4,7 +4,7 @@
 export const profile = {
   // Caminho da sua foto dentro da pasta public, por exemplo "/images/murilo.jpg".
   // Enquanto estiver null, aparece um espaço reservado com as iniciais.
-  photo: null as string | null,
+  photo: "/images/murilo.webp" as string | null,
 
   // PDF do currículo, dentro da pasta public. Para atualizar, troque o arquivo.
   resume: "/curriculo-murilo.pdf",
