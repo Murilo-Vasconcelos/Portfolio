@@ -1,0 +1,71 @@
+# Confere cada Pull Request e cada push na main: lint, tipos, formatação,
+# testes de unidade, build de produção e testes de ponta a ponta.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Um push novo no mesmo PR cancela a execução anterior
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: portfolio
+
+env:
+  # Os hooks do Git não servem para nada no CI
+  HUSKY: 0
+  NEXT_TELEMETRY_DISABLED: 1
+
+jobs:
+  checks:
+    name: Lint, tipos e testes de unidade
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: portfolio/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run format:check
+      - run: npm test
+
+  build-e2e:
+    name: Build e testes de ponta a ponta
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      # Token automático do Actions: sobe o limite da API do GitHub de 60
+      # para 1.000 requisições por hora, então o build e os testes não
+      # dependem da sorte com o IP compartilhado do runner.
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: portfolio/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - name: Guarda o relatório do Playwright
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: portfolio/playwright-report/
+          retention-days: 14
