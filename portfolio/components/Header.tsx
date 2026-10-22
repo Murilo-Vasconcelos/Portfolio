@@ -5,7 +5,6 @@ import type { Locale } from "@/lib/i18n";
 type HeaderDict = {
   themeToLight: string;
   themeToDark: string;
-  themeAria: string;
   langAria: string;
   home: string;
   navAria: string;
@@ -43,10 +42,10 @@ export default function Header({
     <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between gap-2 bg-bg/70 px-4 py-4 backdrop-blur-md sm:gap-4 sm:px-8">
       <a
         href={`${base}#inicio`}
-        aria-label={dict.home}
         className="font-display text-xl font-bold tracking-wider"
       >
-        MG
+        {/* O nome acessível começa pelo texto visível ("MG") */}
+        MG<span className="sr-only"> · {dict.home}</span>
       </a>
 
       {/* Menu só aparece em telas largas */}
@@ -71,7 +70,6 @@ export default function Header({
           labels={{
             toLight: dict.themeToLight,
             toDark: dict.themeToDark,
-            aria: dict.themeAria,
           }}
         />
       </div>
