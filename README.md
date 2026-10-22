@@ -69,8 +69,10 @@ app/[lang]/projetos/  lista de projetos e página de cada um (/projetos/[slug])
 components/     cabeçalho, botões e animações
 components/sections/  Jornada, Experiência, Projetos, Skills, Certificações, Contato
 data/           projetos, equipe, ferramentas, skills (e logos) e dados do perfil
-lib/i18n.ts     lista de idiomas
-services/       acesso à API do GitHub, com cache
+lib/            utilitários puros: idiomas, validação do contato, clientes do Supabase
+actions/        Server Actions (formulário, login, painel): validam e chamam services/
+services/       acesso a APIs externas: GitHub (com cache), Supabase e Resend
+supabase/       migrações SQL do banco (tabelas e políticas de acesso)
 tests/unit/     testes de unidade (Vitest)
 tests/e2e/      testes de ponta a ponta (Playwright)
 proxy.ts        escolhe o idioma na primeira visita
@@ -105,6 +107,35 @@ da API a cada visita e mostraria o esqueleto sempre. A API GraphQL do GitHub
 foi descartada porque exige token até para dados públicos, e a REST entrega
 tudo que o site usa (descrição, linguagem, tópicos e data de atualização) sem
 biblioteca extra.
+
+## Formulário de contato
+
+O formulário fica na seção Contato da home (`components/ContactForm.tsx`).
+
+- **Validação por campo:** o mesmo esquema Zod (`lib/contact.ts`) roda no
+  navegador, para a mensagem aparecer na hora ("E-mail inválido...",
+  "mínimo de 20 caracteres"), e de novo no servidor, que nunca confia no
+  navegador. Os erros são códigos; o texto de cada um está em `pt.json` e
+  `en.json`.
+- **Envio:** uma Server Action (`actions/contact.ts`) grava a mensagem no
+  Supabase (`services/messages.ts`) e, depois de responder ao visitante,
+  avisa o dono por e-mail pelo Resend (`services/email.ts`). Se o e-mail
+  falhar, a mensagem continua salva e aparece no painel.
+- **Estados:** botão bloqueado com spinner durante o envio (evita mensagem
+  duplicada), aviso de sucesso ou de erro, e o texto não some se o envio
+  falhar. Um campo escondido barra robôs simples.
+- **Banco:** a tabela e as políticas de acesso estão versionadas em
+  `portfolio/supabase/migrations/`. O visitante só consegue inserir; ler e
+  marcar como respondida exige login.
+
+**Por que assim:**
+
+| Escolha | Comparado com | Critério | O que se aceitou perder |
+| --- | --- | --- | --- |
+| Supabase (Postgres + Auth) | Firebase, backend próprio em Node | Banco e login no mesmo serviço, SQL versionável, regras de acesso no próprio banco (RLS) e plano gratuito | Depender de um serviço externo; o plano gratuito pausa o projeto após 7 dias sem uso |
+| Resend (API REST) | EmailJS, Formspree | O envio sai do servidor, sem expor chave no navegador, e a mensagem já é gravada no nosso banco | Sem domínio verificado, o remetente de teste só entrega para o e-mail da conta |
+| Zod | Yup, validação manual | Um esquema só para navegador e servidor, com tipos do TypeScript gerados dele | Uma dependência a mais |
+| `useActionState` + Server Action | React Hook Form, Formik | Três campos não pedem biblioteca; o React 19 já dá o estado pendente e o resultado | Recursos prontos de formulários grandes (arrays, máscaras) |
 
 ## Testes e CI
 

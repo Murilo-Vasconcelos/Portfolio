@@ -41,7 +41,9 @@ components/            componentes reutilizáveis (botões, animações, cabeça
 components/sections/   uma seção da página por arquivo
 data/                  dados que não mudam de idioma (links, imagens, skills)
 lib/                   utilitários puros e configuração (i18n, site, hooks simples)
-services/              acesso a APIs externas (GitHub, Supabase, e-mail) — criar quando precisar
+actions/               Server Actions ("use server"): validam a entrada e chamam services/
+services/              acesso a APIs externas (GitHub, Supabase, Resend)
+supabase/migrations/   SQL do banco, com as políticas de RLS (toda mudança de tabela vira migração nova)
 tests/unit/            testes de unidade (Vitest + Testing Library), *.test.ts(x)
 tests/e2e/             testes de ponta a ponta (Playwright), *.spec.ts
 hooks/                 hooks React reutilizáveis — criar quando precisar
@@ -56,6 +58,8 @@ Regras:
 - Server Components por padrão. Só use `"use client"` quando o componente
   precisa de estado, efeitos, eventos do navegador ou Framer Motion.
 - Chamadas a APIs externas ficam em `services/`, nunca direto no componente.
+  Mutações entram por Server Actions em `actions/`, que validam de novo no
+  servidor (Zod) e conferem o login antes de mexer em dados do painel.
   Use o cache do Next (`"use cache"`, `cacheLife`) para não repetir requisições.
 - Nenhum texto visível fica no JSX: tudo vai para `pt.json` **e** `en.json`. O
   tipo `Dictionary` vem do `pt.json`, então o TypeScript acusa chave faltando.
