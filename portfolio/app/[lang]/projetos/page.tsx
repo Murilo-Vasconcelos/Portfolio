@@ -48,7 +48,13 @@ async function RepoList({
   return (
     <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
       {repos.map((repo) => (
-        <RepoCard key={repo.slug} repo={repo} lang={lang} dict={dict} />
+        <RepoCard
+          key={repo.slug}
+          repo={repo}
+          lang={lang}
+          dict={dict}
+          headingLevel="h2"
+        />
       ))}
     </ul>
   );
