@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { lang as rootLang } from "next/root-params";
+import { buttonClasses } from "@/components/Button";
 import Header from "@/components/Header";
 import { defaultLocale, hasLocale } from "@/lib/i18n";
 import { getDictionary } from "./dictionaries";
@@ -34,15 +35,12 @@ export default async function NotFound() {
           {text.text}
         </p>
         <div className="mt-10 flex flex-wrap gap-3">
-          <Link
-            href={`/${lang}`}
-            className="rounded-full border border-fg bg-fg px-6 py-3 text-sm font-semibold text-bg transition-colors hover:bg-transparent hover:text-fg"
-          >
+          <Link href={`/${lang}`} className={buttonClasses()}>
             {text.home}
           </Link>
           <Link
             href={`/${lang}/projetos`}
-            className="rounded-full border border-line px-6 py-3 text-sm font-semibold transition-colors hover:border-fg"
+            className={buttonClasses({ variant: "secondary" })}
           >
             {text.projects}
           </Link>
