@@ -194,12 +194,12 @@ export default function ContactForm({ dict }: { dict: Dict }) {
           </p>
         )}
       </div>
-      {state.status === "error" && !pending && (
+      {(state.status === "error" || state.status === "tooMany") && !pending && (
         <p
           role="alert"
           className="mt-5 rounded-2xl border border-red-600 p-4 font-semibold text-red-700 dark:border-red-400 dark:text-red-400"
         >
-          {dict.error}
+          {dict[state.status === "error" ? "error" : "tooMany"]}
         </p>
       )}
     </form>

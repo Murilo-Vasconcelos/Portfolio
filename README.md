@@ -187,6 +187,32 @@ está indisponível e a home mostra os repositórios mais recentes.
 | `proxy.ts` + checagem no servidor | Só o proxy, só a página | O proxy evita até renderizar o painel; a checagem repetida protege as Server Actions, como recomenda o guia de autenticação do Next | Uma consulta de sessão a mais por requisição do painel |
 | Destaques no banco | Lista fixa em `data/` | Muda sem novo deploy e dá uso real ao painel | Depender do banco para a ordem da home (sem ele, volta aos mais recentes) |
 
+## Segurança
+
+Além das três camadas do painel, o site tem:
+
+- **Limite por IP:** o formulário aceita até 5 mensagens a cada 10 minutos e
+  o login até 10 tentativas a cada 10 minutos (`lib/rateLimit.ts`). Isso
+  protege o banco e a cota de e-mails do Resend contra robôs e dificulta
+  adivinhar a senha. O limite do próprio Supabase não basta, porque para ele
+  todo login vem do IP da Vercel.
+- **Cabeçalhos de segurança** (`next.config.ts`): política de conteúdo (CSP)
+  que só carrega script, imagem, fonte e mídia do próprio site e proíbe abrir
+  o site dentro de um iframe de outro (clickjacking), além de `nosniff`,
+  `Referrer-Policy`, `Permissions-Policy` e HSTS.
+- **Entrada conferida no servidor:** o idioma que chega nas ações de login só
+  aceita `pt` ou `en` (o redirecionamento nunca sai do site), o id da mensagem
+  precisa ser UUID e a marcação, verdadeiro ou falso.
+- **Segredos fora do navegador:** a chave do Resend só existe no servidor, e
+  a chave do Supabase, mesmo sendo pública, só é usada no servidor.
+
+**Por que assim:**
+
+| Escolha | Comparado com | Critério | O que se aceitou perder |
+| --- | --- | --- | --- |
+| Limite na memória do servidor | Upstash Redis, Vercel KV | Sem outro serviço nem conta para um site com pouco tráfego | Cada instância da Vercel conta sozinha e esquece ao reciclar; um ataque grande com muitos IPs passaria; quem divide o mesmo IP (Wi-Fi da faculdade, operadora) divide o limite |
+| CSP fixa com `'unsafe-inline'` | CSP com nonce gerado no `proxy.ts`; hashes de SRI | Mantém o HTML estático e o cache (o nonce obriga a gerar toda página na hora, como diz o guia de CSP do Next); o SRI ainda é experimental no Next | Um script injetado inline não seria barrado; o resto da política continua valendo |
+
 ## Desempenho
 
 Lighthouse no modo celular (build de produção, 22/10/2026):

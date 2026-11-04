@@ -16,7 +16,9 @@ import { setMessageAnswered } from "@/services/messages";
 export async function toggleAnswered(id: string, answered: boolean) {
   const auth = await getAuthenticatedClient();
   if (!auth) return { ok: false };
-  if (!z.uuid().safeParse(id).success) return { ok: false };
+  if (!z.uuid().safeParse(id).success || typeof answered !== "boolean") {
+    return { ok: false };
+  }
 
   try {
     await setMessageAnswered(auth.supabase, id, answered);
