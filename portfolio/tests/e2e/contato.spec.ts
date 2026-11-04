@@ -10,11 +10,14 @@ test.describe("formulário de contato", () => {
     const form = page.locator("form", {
       has: page.getByRole("button", { name: "Enviar mensagem" }),
     });
-    await form.getByRole("button", { name: "Enviar mensagem" }).click();
-
-    await expect(
-      form.getByText("Informe seu nome, com pelo menos 2 letras."),
-    ).toBeVisible();
+    // Repete o clique até o React assumir a página (antes da hidratação o
+    // clique não valida nada)
+    await expect(async () => {
+      await form.getByRole("button", { name: "Enviar mensagem" }).click();
+      await expect(
+        form.getByText("Informe seu nome, com pelo menos 2 letras."),
+      ).toBeVisible({ timeout: 1000 });
+    }).toPass();
     await expect(
       form.getByText("Informe seu e-mail para eu poder responder."),
     ).toBeVisible();
@@ -56,10 +59,12 @@ test.describe("formulário de contato", () => {
   test.describe("em inglês", () => {
     test("as mensagens de erro também saem traduzidas", async ({ page }) => {
       await page.goto("/en#contato");
-      await page.getByRole("button", { name: "Send message" }).click();
-      await expect(
-        page.getByText("Enter your email so I can reply."),
-      ).toBeVisible();
+      await expect(async () => {
+        await page.getByRole("button", { name: "Send message" }).click();
+        await expect(
+          page.getByText("Enter your email so I can reply."),
+        ).toBeVisible({ timeout: 1000 });
+      }).toPass();
     });
   });
 });
