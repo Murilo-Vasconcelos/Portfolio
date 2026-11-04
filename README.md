@@ -210,8 +210,8 @@ Além das três camadas do painel, o site tem:
 
 | Escolha | Comparado com | Critério | O que se aceitou perder |
 | --- | --- | --- | --- |
-| Limite na memória do servidor | Upstash Redis, Vercel KV | Sem outro serviço nem conta para um site com pouco tráfego | Cada instância da Vercel conta sozinha e esquece ao reciclar; um ataque grande com muitos IPs passaria |
-| CSP fixa com `'unsafe-inline'` | CSP com nonce gerado no `proxy.ts` | Mantém o HTML estático e o cache (o nonce obriga a gerar toda página na hora, como diz o guia de CSP do Next) | Um script injetado inline não seria barrado; o resto da política continua valendo |
+| Limite na memória do servidor | Upstash Redis, Vercel KV | Sem outro serviço nem conta para um site com pouco tráfego | Cada instância da Vercel conta sozinha e esquece ao reciclar; um ataque grande com muitos IPs passaria; quem divide o mesmo IP (Wi-Fi da faculdade, operadora) divide o limite |
+| CSP fixa com `'unsafe-inline'` | CSP com nonce gerado no `proxy.ts`; hashes de SRI | Mantém o HTML estático e o cache (o nonce obriga a gerar toda página na hora, como diz o guia de CSP do Next); o SRI ainda é experimental no Next | Um script injetado inline não seria barrado; o resto da política continua valendo |
 
 ## Desempenho
 
