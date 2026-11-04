@@ -23,7 +23,8 @@ export async function sendContactEmail(input: ContactInput): Promise<boolean> {
       to: [to],
       // "Responder" no e-mail já vai direto para quem escreveu
       reply_to: input.email,
-      subject: `Nova mensagem de ${input.name} pelo portfólio`,
+      // Quebra de linha no nome não entra no assunto
+      subject: `Nova mensagem de ${input.name.replace(/\s+/g, " ")} pelo portfólio`,
       text: `${input.message}\n\n— ${input.name} <${input.email}>`,
     }),
   }).catch(() => null);

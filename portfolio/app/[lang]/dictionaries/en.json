@@ -330,6 +330,7 @@
       "sending": "Sending…",
       "success": "Message sent! Thanks for reaching out, I'll reply to your email soon.",
       "error": "I couldn't send it right now. Please try again in a moment or reach me on LinkedIn.",
+      "tooMany": "Too many messages in a row. Please wait a few minutes and try again, or reach me on LinkedIn.",
       "honeypot": "Leave this field empty",
       "errors": {
         "nameShort": "Enter your name, at least 2 letters.",
@@ -370,6 +371,7 @@
         "passwordRequired": "Enter your password."
       },
       "wrong": "Wrong email or password.",
+      "tooMany": "Too many attempts in a row. Please wait a few minutes and try again.",
       "unavailable": "Sign-in is unavailable right now. Please try again in a moment."
     },
     "dashboard": {

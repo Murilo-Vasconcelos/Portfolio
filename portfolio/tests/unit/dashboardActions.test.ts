@@ -69,6 +69,12 @@ describe("ações do painel com login", () => {
     expect(mocks.setMessageAnswered).not.toHaveBeenCalled();
   });
 
+  it("recusam um valor que não é verdadeiro ou falso", async () => {
+    const answered = "sim" as unknown as boolean;
+    expect(await toggleAnswered(id, answered)).toEqual({ ok: false });
+    expect(mocks.setMessageAnswered).not.toHaveBeenCalled();
+  });
+
   it("salvam os destaques na ordem escolhida e limpam o cache da home", async () => {
     const result = await saveFeatured(
       { status: "idle" },

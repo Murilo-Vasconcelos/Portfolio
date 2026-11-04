@@ -84,7 +84,9 @@ export default function LoginForm({
         {dict.submit}
       </Button>
 
-      {(state.status === "wrong" || state.status === "unavailable") &&
+      {(state.status === "wrong" ||
+        state.status === "tooMany" ||
+        state.status === "unavailable") &&
         !pending && (
           <p
             role="alert"

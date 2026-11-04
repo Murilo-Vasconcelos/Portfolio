@@ -330,6 +330,7 @@
       "sending": "Enviando…",
       "success": "Mensagem enviada! Obrigado pelo contato, respondo em breve no seu e-mail.",
       "error": "Não consegui enviar agora. Tente de novo em alguns instantes ou me chame no LinkedIn.",
+      "tooMany": "Muitas mensagens seguidas. Espere alguns minutos e tente de novo, ou me chame no LinkedIn.",
       "honeypot": "Não preencha este campo",
       "errors": {
         "nameShort": "Informe seu nome, com pelo menos 2 letras.",
@@ -370,6 +371,7 @@
         "passwordRequired": "Informe a senha."
       },
       "wrong": "E-mail ou senha incorretos.",
+      "tooMany": "Muitas tentativas seguidas. Espere alguns minutos e tente de novo.",
       "unavailable": "O login está indisponível agora. Tente de novo em alguns instantes."
     },
     "dashboard": {
