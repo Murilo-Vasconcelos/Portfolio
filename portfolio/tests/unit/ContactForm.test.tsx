@@ -106,6 +106,19 @@ describe("ContactForm", () => {
     expect(message).toHaveValue("Quero conversar sobre uma vaga de estágio.");
   });
 
+  it("avisa quando o servidor barra por excesso de envios", async () => {
+    sendContactMessage.mockResolvedValue({ status: "tooMany" });
+    const { user, name, email, message, submit } = setup();
+
+    await user.type(name, "Ana Souza");
+    await user.type(email, "ana@exemplo.com");
+    await user.type(message, "Quero conversar sobre uma vaga de estágio.");
+    await user.click(submit);
+
+    expect(await screen.findByRole("alert")).toHaveTextContent(dict.tooMany);
+    expect(message).toHaveValue("Quero conversar sobre uma vaga de estágio.");
+  });
+
   it("mostra os erros que o servidor devolver", async () => {
     sendContactMessage.mockResolvedValue({
       status: "invalid",
